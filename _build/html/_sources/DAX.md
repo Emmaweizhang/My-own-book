@@ -1,9 +1,8 @@
 # DAX story
-When I first started working as a Data Analyst back in 2020, I had lots of fun with Power Bi. Luckily, I had two lovely colleagues who patiently taught me lots of Power Bi tricks. I was introduced [the DAX book](https://www.amazon.com.au/DEFINITIVE-GUIDE-DAX-INTELLIGENCE-MICROSOFT/dp/9353945488/ref=asc_df_9353945488/?tag=googleshopdsk-22&linkCode=df0&hvadid=464180633192&hvpos=&hvnetw=g&hvrand=3126569913376291643&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9071400&hvtargid=pla-1025753890035&psc=1)
+When I first started working as a Data Analyst back in 2020, I had lots of fun with Power Bi. Luckily, I had two lovely colleagues who patiently taught me lots of Power Bi tricks. I was introduced to [The Definitive Guide to DAX book](https://www.amazon.com.au/DEFINITIVE-GUIDE-DAX-INTELLIGENCE-MICROSOFT/dp/9353945488/ref=asc_df_9353945488/?tag=googleshopdsk-22&linkCode=df0&hvadid=464180633192&hvpos=&hvnetw=g&hvrand=3126569913376291643&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9071400&hvtargid=pla-1025753890035&psc=1) 
 
-Whether you write your book's content in Jupyter Notebooks (`.ipynb`) or
-in regular markdown files (`.md`), you'll write in the same flavor of markdown
-called **MyST Markdown**.
+This chapter is my notes.
+
 
 ## What is MyST?
 
