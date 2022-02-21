@@ -21,10 +21,7 @@ When I first started using DAX, it felt intuitive but also mysterious at the sam
 The filter context filters the model; the row context iterates a table.
 ```
 
-In your built book.
-
-For more information on writing directives, see the
-[MyST documentation](https://myst-parser.readthedocs.io/).
+However, **CALCULATE** can transform a row context into a filter context. Context transition is invoked whenever there is a row context. For example, if one uses **Calculate** in a calculated column, context transition occurs.
 
 
 ### Using a role
