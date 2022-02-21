@@ -5,4 +5,4 @@ format: jb-book
 root: about
 chapters:
 - file: DAX
-- file: notebooks
+- file: Machine Learning
