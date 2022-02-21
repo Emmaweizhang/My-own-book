@@ -4,52 +4,23 @@ When I first started working as a Data Analyst back in 2020, I had lots of fun w
 This chapter is my notes.
 
 
-## What is MyST?
+## What is DAX?
 
-MyST stands for "Markedly Structured Text". It
-is a slight variation on a flavor of markdown called "CommonMark" markdown,
-with small syntax extensions to allow you to write **roles** and **directives**
-in the Sphinx ecosystem.
+DAX stands for "Data Analysis Expressions". It is the native formula and query language for Microsoft PowerPivot, Power BI Desktop and SQL Server Analysis Services Tabular models.
 
-## What are roles and directives?
 
-Roles and directives are two of the most powerful tools in Jupyter Book. They
-are kind of like functions, but written in a markup language. They both
-serve a similar purpose, but **roles are written in one line**, whereas
-**directives span many lines**. They both accept different kinds of inputs,
-and what they do with those inputs depends on the specific role or directive
-that is being called.
+## Useful websites for using DAX?
+[DAX.do](https://dax.do/) is a playground to write and run DAX queries.
 
-### Using a directive
+[DAXformatter](https://www.daxformatter.com/) is a very useful tool to format DAX code.
 
-At its simplest, you can insert a directive into your book's content like so:
-
-````
-```{mydirectivename}
-My directive content
-```
-````
-This will only work if a directive with name `mydirectivename` already exists
-(which it doesn't). There are many pre-defined directives associated with
-Jupyter Book. For example, to insert a note box into your content, you can
-use the following directive:
-
-````
-```{note}
-Here is a note
-```
-````
-
-This results in:
+## My own DAX notes
+When I first started using DAX, it felt intuitive but also mysterious at the same time. Very often, it just worked miraculously. After battling with it for a year, I decided to read the DAX guide as opposed to relying on my instinct. Understanding the evaluation contexts is the key to unlocking the full power of the DAX language. Here is the most important thing to note.
 
 ```{note}
-Here is a note
+The filter context filters the model; the row context iterates a table.
 ```
-
-In your built book.
-
-For more information on writing directives, see the
-[MyST documentation](https://myst-parser.readthedocs.io/).
+However, **CALCULATE** can transform a row context into a filter context. Context transition is invoked whenever there is a row context. For example, if one uses **Calculate** in a calculated column, context transition occurs.
 
 
 ### Using a role
