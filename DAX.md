@@ -20,7 +20,6 @@ When I first started using DAX, it felt intuitive but also mysterious at the sam
 ```{note}
 The filter context filters the model; the row context iterates a table.
 ```
-
 However, **CALCULATE** can transform a row context into a filter context. Context transition is invoked whenever there is a row context. For example, if one uses **Calculate** in a calculated column, context transition occurs.
 
 
