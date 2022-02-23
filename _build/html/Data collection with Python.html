@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Data collection and processing with Python &#8212; Data science, health, design, statistics etc</title>
+    <title>Data collection with Python &#8212; Data science, health, design, statistics etc</title>
     
   <link href="_static/css/theme.css" rel="stylesheet">
   <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -109,7 +109,7 @@
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Data collection and processing with Python
+   Data collection with Python
   </a>
  </li>
 </ul>
@@ -241,6 +241,53 @@
    Filter
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#list-comprehension-an-alternative-way-to-do-map-and-filter-operations">
+   List comprehension, an alternative way to do map and filter operations
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#zip">
+   ZIP
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#requesting-data-from-the-internet">
+   Requesting Data from the Internet
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-http-protocol">
+     The HTTP protocol
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#using-rest-apis">
+     Using REST APIs
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#fetching-in-python-with-requests-get">
+     Fetching in python with requests.get
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-to-use-a-rest-api">
+     How to use a REST API
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#caching-response-content">
+     Caching Response Content
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#google-places-api">
+     Google Places API
+    </a>
+   </li>
+  </ul>
+ </li>
 </ul>
 
             </nav>
@@ -251,7 +298,7 @@
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Data collection and processing with Python</h1>
+                <h1>Data collection with Python</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -286,6 +333,53 @@
    Filter
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#list-comprehension-an-alternative-way-to-do-map-and-filter-operations">
+   List comprehension, an alternative way to do map and filter operations
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#zip">
+   ZIP
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#requesting-data-from-the-internet">
+   Requesting Data from the Internet
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-http-protocol">
+     The HTTP protocol
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#using-rest-apis">
+     Using REST APIs
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#fetching-in-python-with-requests-get">
+     Fetching in python with requests.get
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-to-use-a-rest-api">
+     How to use a REST API
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#caching-response-content">
+     Caching Response Content
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#google-places-api">
+     Google Places API
+    </a>
+   </li>
+  </ul>
+ </li>
 </ul>
 
                         </nav>
@@ -295,8 +389,8 @@
             
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="data-collection-and-processing-with-python">
-<h1>Data collection and processing with Python<a class="headerlink" href="#data-collection-and-processing-with-python" title="Permalink to this headline">¶</a></h1>
+  <div class="tex2jax_ignore mathjax_ignore section" id="data-collection-with-python">
+<h1>Data collection with Python<a class="headerlink" href="#data-collection-with-python" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="nested-data">
 <h2>Nested Data<a class="headerlink" href="#nested-data" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
@@ -628,6 +722,576 @@ True
 </div>
 <div class="section" id="filter">
 <h2>Filter<a class="headerlink" href="#filter" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">keep_evens</span><span class="p">(</span><span class="n">nums</span><span class="p">):</span>
+    <span class="n">new_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">nums</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">num</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">new_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">new_list</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">keep_evens</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[4, 6, 0]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">keep_evens</span><span class="p">(</span><span class="n">nums</span><span class="p">):</span>
+    <span class="n">new_seq</span> <span class="o">=</span> <span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">num</span><span class="p">:</span> <span class="n">num</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="n">nums</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">new_seq</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">keep_evens</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[4, 6, 0]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="list-comprehension-an-alternative-way-to-do-map-and-filter-operations">
+<h2>List comprehension, an alternative way to do map and filter operations<a class="headerlink" href="#list-comprehension-an-alternative-way-to-do-map-and-filter-operations" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">things</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">9</span><span class="p">]</span>
+
+<span class="n">yourlist</span> <span class="o">=</span> <span class="p">[</span><span class="n">value</span> <span class="o">*</span> <span class="mi">2</span> <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">things</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">yourlist</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[4, 10, 18]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">keep_evens</span><span class="p">(</span><span class="n">nums</span><span class="p">):</span>
+    <span class="n">new_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">num</span> <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">nums</span> <span class="k">if</span> <span class="n">num</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">new_list</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">keep_evens</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[4, 6, 0]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="zip">
+<h2>ZIP<a class="headerlink" href="#zip" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="n">L2</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="n">L3</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">L1</span><span class="p">)):</span>
+    <span class="n">L3</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">L1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">L2</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">L3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[4, 6, 8]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="n">L2</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="n">L4</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">L1</span><span class="p">,</span> <span class="n">L2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">L4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(3, 1), (4, 2), (5, 3)]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="n">L2</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="n">L3</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">L4</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">L1</span><span class="p">,</span> <span class="n">L2</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">)</span> <span class="ow">in</span> <span class="n">L4</span><span class="p">:</span>
+    <span class="n">L3</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x1</span><span class="o">+</span><span class="n">x2</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">L3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[4, 6, 8]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="n">L2</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="n">L3</span> <span class="o">=</span> <span class="p">[</span><span class="n">x1</span> <span class="o">+</span> <span class="n">x2</span> <span class="k">for</span> <span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">L1</span><span class="p">,</span> <span class="n">L2</span><span class="p">))]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">L3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[4, 6, 8]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">possible</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="n">blanked</span><span class="p">,</span> <span class="n">guesses_made</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">word</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">blanked</span><span class="p">):</span>
+        <span class="k">return</span> <span class="kc">False</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">word</span><span class="p">)):</span>
+        <span class="n">bc</span> <span class="o">=</span> <span class="n">blanked</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">wc</span> <span class="o">=</span> <span class="n">word</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">bc</span> <span class="o">==</span> <span class="s1">&#39;_&#39;</span> <span class="ow">and</span> <span class="n">wc</span> <span class="ow">in</span> <span class="n">guesses_made</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">elif</span> <span class="n">bc</span> <span class="o">!=</span> <span class="s1">&#39;_&#39;</span> <span class="ow">and</span> <span class="n">bc</span> <span class="o">!=</span> <span class="n">wc</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+    <span class="k">return</span> <span class="kc">True</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">possible</span><span class="p">(</span><span class="s2">&quot;wonderwall&quot;</span><span class="p">,</span> <span class="s2">&quot;_on__r__ll&quot;</span><span class="p">,</span> <span class="s2">&quot;otnqurl&quot;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">possible</span><span class="p">(</span><span class="s2">&quot;wonderwall&quot;</span><span class="p">,</span> <span class="s2">&quot;_on__r__ll&quot;</span><span class="p">,</span> <span class="s2">&quot;wotnqurl&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+False
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="requesting-data-from-the-internet">
+<h2>Requesting Data from the Internet<a class="headerlink" href="#requesting-data-from-the-internet" title="Permalink to this headline">¶</a></h2>
+<p>The Internet is a transport mechanism that lets any connected device communicate with any other connected device. Behind the scenes:</p>
+<p>Each device has a globally distinct IP address, which is a 32 bit number. Usually an IP address is represented as a sequence of four decimal numbers, each number in the range (0, 255). For example, when I checked the IP address for my laptop just now, it was 141.211.203.248. Any IP address beginning with 141.211 is for a device at the University of Michigan. When I take my laptop home and connect to a network there, my laptop gets a different IP address that it uses there.</p>
+<p>Data is chopped up into reasonable sized packets (up to 65,535 bytes, but usually much smaller).</p>
+<p>Each data packet has a header that includes the destination IP address.</p>
+<p>Each packet is routed independently, getting passed on from one computing device to another until it reaches its destination. The computing devices that do that packet forwarding are called routers. Each router keeps an address table that says, when it gets a packet for some destination address, which of its neighbors should it pass the packet on to. The routers are constantly talking to each other passing information about how they should update their routing tables. The system was designed to be resistant to any local damage. If some of the routers stop working, the rest of the routers talk to each other and start routing packets around in a different way so that packets still reach their intended destination if there is some path to get there. It is this technical capability that has spawned metaphoric quotes like this one from John Gilmore: “The Net interprets censorship as damage and routes around it.”</p>
+<p>At the destination, the packets are reassembled into the original data message.</p>
+<p><img alt="image.png" src="attachment:48fe4a30-04be-42c3-bbf5-40b216a490fd.png" /></p>
+<p><img alt="image.png" src="attachment:b54bec6a-0656-480b-bd20-56677af2c36d.png" /></p>
+<div class="section" id="the-http-protocol">
+<h3>The HTTP protocol<a class="headerlink" href="#the-http-protocol" title="Permalink to this headline">¶</a></h3>
+<p>A protocol specifies the order in which parties will speak and the format of what they say and the content of appropriate responses.</p>
+<p>HTTP is the protocol that specifies how web browsers or other programs communicate with web servers. One version of the formal specification, before it was later split into multiple documents, was IETF RFC 2616. It is 176 pages long! Fortunately, the basics are pretty easy to understand.</p>
+<p>Step 1: the client makes a request to the server.
+If the request only involves fetching data, the client sends a message of the form GET <path>, where <path> is the path part of the URL</p>
+<p>If the request involves sending some data (e.g., a file upload, or some authentication information), the message starts with POST</p>
+<p>In either case, the client sends some HTTP headers. These include:
+The type of client program. This allows the server to send back different things to small mobile devices than desktop browsers (a “responsive” website)</p>
+<p>Any cookies that the server previously asked the client to hold onto. This allows the server to continue previous interactions, rather than treating every request as stand-alone. It also allows ad networks to place personalized ads.</p>
+<p>After the HTTP headers, for a POST type communication, there is some data (the body of the request).</p>
+<p>Step 2: the server responds to the client.
+The server first sends back some HTTP headers. These include:
+a response code indicating whether the server thinks it has fulfilled the request or not.</p>
+<p>a description of the type of content it is sending back (e.g., text/html when it is sending html-formatted text).</p>
+<p>any cookies it would like the client to hold onto and send back the next time it communicates with the server.</p>
+<p>After the headers come the contents. This is the stuff that you would see if you ask to “View Source” in a browser.</p>
+</div>
+<div class="section" id="using-rest-apis">
+<h3>Using REST APIs<a class="headerlink" href="#using-rest-apis" title="Permalink to this headline">¶</a></h3>
+<p>REST stands for REpresentational State Transfer. It originally had a more abstract meaning, but has come to be a shorthand name for web sites that act a bit like python functions, taking as inputs values for certain parameters and producing outputs in the form of a long text string.</p>
+<p>API stands for Application Programming Interface. An API specifies how an external program (an application program) can request that a program perform certain computations.</p>
+<p>Putting the two together, a REST API specifies how external programs can make HTTP requests to a web site in order to request that some computation be carried out and data returned as output. When a website is designed to accept requests generated by other computer programs, and produce outputs to be consumed by other programs, it is sometimes called a web service, as opposed to a web site which produces output meant for humans to consume in a web browser.</p>
+<p>In this format, the URL has a standard structure:</p>
+<ul class="simple">
+<li><p>the base URL</p></li>
+<li><p>a ? character</p></li>
+<li><p>one or more key-value pairs, formatted as key=value pairs and separated by the &amp; character.</p></li>
+</ul>
+<p><img alt="image.png" src="attachment:54c608aa-e762-4d2b-bd5b-3f53262eb335.png" /></p>
+</div>
+<div class="section" id="fetching-in-python-with-requests-get">
+<h3>Fetching in python with requests.get<a class="headerlink" href="#fetching-in-python-with-requests-get" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">json</span>
+
+<span class="n">page</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;https://api.datamuse.com/words?rel_rhy=funny&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">page</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">page</span><span class="o">.</span><span class="n">text</span><span class="p">[:</span><span class="mi">150</span><span class="p">])</span> <span class="c1"># print the first 150 characters</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">page</span><span class="o">.</span><span class="n">url</span><span class="p">)</span> <span class="c1"># print the url that was fetched</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;------&quot;</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">page</span><span class="o">.</span><span class="n">json</span><span class="p">()</span> <span class="c1"># turn page.text into a python object</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;---first item in the list---&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;---the whole list, pretty printed---&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span> <span class="c1"># pretty print the results</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;requests.models.Response&#39;&gt;
+[{&quot;word&quot;:&quot;money&quot;,&quot;score&quot;:4415,&quot;numSyllables&quot;:2},{&quot;word&quot;:&quot;honey&quot;,&quot;score&quot;:1206,&quot;numSyllables&quot;:2},{&quot;word&quot;:&quot;sunny&quot;,&quot;score&quot;:717,&quot;numSyllables&quot;:2},{&quot;word&quot;:&quot;
+https://api.datamuse.com/words?rel_rhy=funny
+------
+&lt;class &#39;list&#39;&gt;
+---first item in the list---
+{&#39;word&#39;: &#39;money&#39;, &#39;score&#39;: 4415, &#39;numSyllables&#39;: 2}
+---the whole list, pretty printed---
+[
+  {
+    &quot;word&quot;: &quot;money&quot;,
+    &quot;score&quot;: 4415,
+    &quot;numSyllables&quot;: 2
+  },
+  {
+    &quot;word&quot;: &quot;honey&quot;,
+    &quot;score&quot;: 1206,
+    &quot;numSyllables&quot;: 2
+  },
+  {
+    &quot;word&quot;: &quot;sunny&quot;,
+    &quot;score&quot;: 717,
+    &quot;numSyllables&quot;: 2
+  },
+  {
+    &quot;word&quot;: &quot;bunny&quot;,
+    &quot;score&quot;: 702,
+    &quot;numSyllables&quot;: 2
+  },
+  {
+    &quot;word&quot;: &quot;blini&quot;,
+    &quot;score&quot;: 613,
+    &quot;numSyllables&quot;: 2
+  },
+  {
+    &quot;word&quot;: &quot;gunny&quot;,
+    &quot;score&quot;: 449,
+    &quot;numSyllables&quot;: 2
+  },
+  {
+    &quot;word&quot;: &quot;tunny&quot;,
+    &quot;score&quot;: 301,
+    &quot;numSyllables&quot;: 2
+  },
+  {
+    &quot;word&quot;: &quot;sonny&quot;,
+    &quot;score&quot;: 286,
+    &quot;numSyllables&quot;: 2
+  },
+  {
+    &quot;word&quot;: &quot;dunny&quot;,
+    &quot;score&quot;: 245,
+    &quot;numSyllables&quot;: 2
+  },
+  {
+    &quot;word&quot;: &quot;runny&quot;,
+    &quot;score&quot;: 225,
+    &quot;numSyllables&quot;: 2
+  },
+  {
+    &quot;word&quot;: &quot;thunny&quot;,
+    &quot;score&quot;: 222,
+    &quot;numSyllables&quot;: 2
+  },
+  {
+    &quot;word&quot;: &quot;aknee&quot;,
+    &quot;score&quot;: 179,
+    &quot;numSyllables&quot;: 2
+  },
+  {
+    &quot;word&quot;: &quot;squinny&quot;,
+    &quot;score&quot;: 170,
+    &quot;numSyllables&quot;: 2
+  },
+  {
+    &quot;word&quot;: &quot;fiat money&quot;,
+    &quot;score&quot;: 160,
+    &quot;numSyllables&quot;: 4
+  },
+  {
+    &quot;word&quot;: &quot;gunnie&quot;,
+    &quot;score&quot;: 156,
+    &quot;numSyllables&quot;: 2
+  },
+  {
+    &quot;word&quot;: &quot;blood money&quot;,
+    &quot;score&quot;: 152,
+    &quot;numSyllables&quot;: 3
+  },
+  {
+    &quot;word&quot;: &quot;squiny&quot;,
+    &quot;score&quot;: 151,
+    &quot;numSyllables&quot;: 2
+  },
+  {
+    &quot;word&quot;: &quot;tunney&quot;,
+    &quot;score&quot;: 119,
+    &quot;numSyllables&quot;: 2
+  },
+  {
+    &quot;word&quot;: &quot;spinny&quot;,
+    &quot;score&quot;: 117,
+    &quot;numSyllables&quot;: 2
+  },
+  {
+    &quot;word&quot;: &quot;pin money&quot;,
+    &quot;score&quot;: 107,
+    &quot;numSyllables&quot;: 3
+  },
+  {
+    &quot;word&quot;: &quot;easy money&quot;,
+    &quot;score&quot;: 66,
+    &quot;numSyllables&quot;: 4
+  },
+  {
+    &quot;word&quot;: &quot;smart money&quot;,
+    &quot;score&quot;: 66,
+    &quot;numSyllables&quot;: 3
+  },
+  {
+    &quot;word&quot;: &quot;earnest money&quot;,
+    &quot;score&quot;: 62,
+    &quot;numSyllables&quot;: 4
+  },
+  {
+    &quot;word&quot;: &quot;easter bunny&quot;,
+    &quot;score&quot;: 56,
+    &quot;numSyllables&quot;: 4
+  },
+  {
+    &quot;word&quot;: &quot;paper money&quot;,
+    &quot;score&quot;: 54,
+    &quot;numSyllables&quot;: 4
+  },
+  {
+    &quot;word&quot;: &quot;pocket money&quot;,
+    &quot;score&quot;: 47,
+    &quot;numSyllables&quot;: 4
+  },
+  {
+    &quot;word&quot;: &quot;folding money&quot;,
+    &quot;score&quot;: 46,
+    &quot;numSyllables&quot;: 4
+  },
+  {
+    &quot;word&quot;: &quot;conscience money&quot;,
+    &quot;score&quot;: 41,
+    &quot;numSyllables&quot;: 4
+  },
+  {
+    &quot;word&quot;: &quot;hush money&quot;,
+    &quot;score&quot;: 40,
+    &quot;numSyllables&quot;: 3
+  },
+  {
+    &quot;word&quot;: &quot;prize money&quot;,
+    &quot;score&quot;: 37,
+    &quot;numSyllables&quot;: 3
+  },
+  {
+    &quot;word&quot;: &quot;amount of money&quot;,
+    &quot;score&quot;: 33,
+    &quot;numSyllables&quot;: 5
+  },
+  {
+    &quot;word&quot;: &quot;for love or money&quot;,
+    &quot;score&quot;: 32,
+    &quot;numSyllables&quot;: 5
+  },
+  {
+    &quot;word&quot;: &quot;tight money&quot;,
+    &quot;score&quot;: 32,
+    &quot;numSyllables&quot;: 3
+  },
+  {
+    &quot;word&quot;: &quot;ship money&quot;,
+    &quot;score&quot;: 30,
+    &quot;numSyllables&quot;: 3
+  },
+  {
+    &quot;word&quot;: &quot;metal money&quot;,
+    &quot;score&quot;: 27,
+    &quot;numSyllables&quot;: 4
+  },
+  {
+    &quot;word&quot;: &quot;sum of money&quot;,
+    &quot;score&quot;: 23,
+    &quot;numSyllables&quot;: 4
+  },
+  {
+    &quot;word&quot;: &quot;entrance money&quot;,
+    &quot;score&quot;: 22,
+    &quot;numSyllables&quot;: 4
+  },
+  {
+    &quot;word&quot;: &quot;cheap money&quot;,
+    &quot;score&quot;: 21,
+    &quot;numSyllables&quot;: 3
+  },
+  {
+    &quot;word&quot;: &quot;spending money&quot;,
+    &quot;score&quot;: 21,
+    &quot;numSyllables&quot;: 4
+  },
+  {
+    &quot;word&quot;: &quot;token money&quot;,
+    &quot;score&quot;: 21,
+    &quot;numSyllables&quot;: 4
+  },
+  {
+    &quot;word&quot;: &quot;waste of money&quot;,
+    &quot;score&quot;: 19,
+    &quot;numSyllables&quot;: 4
+  },
+  {
+    &quot;word&quot;: &quot;ransom money&quot;,
+    &quot;score&quot;: 18,
+    &quot;numSyllables&quot;: 4
+  },
+  {
+    &quot;word&quot;: &quot;hearth money&quot;,
+    &quot;score&quot;: 14,
+    &quot;numSyllables&quot;: 3
+  },
+  {
+    &quot;word&quot;: &quot;munni&quot;,
+    &quot;score&quot;: 14,
+    &quot;numSyllables&quot;: 2
+  },
+  {
+    &quot;word&quot;: &quot;bunnie&quot;,
+    &quot;score&quot;: 2,
+    &quot;numSyllables&quot;: 2
+  },
+  {
+    &quot;word&quot;: &quot;euromoney&quot;,
+    &quot;score&quot;: 2,
+    &quot;numSyllables&quot;: 4
+  },
+  {
+    &quot;word&quot;: &quot;smartmoney&quot;,
+    &quot;score&quot;: 2,
+    &quot;numSyllables&quot;: 3
+  }
+]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;q&#39;</span><span class="p">:</span> <span class="s1">&#39;&quot;violins and guitars&quot;&#39;</span><span class="p">,</span> <span class="s1">&#39;tbm&#39;</span><span class="p">:</span> <span class="s1">&#39;isch&#39;</span><span class="p">}</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;https://google.com/search&quot;</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">d</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">url</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>https://www.google.com/search?q=%22violins+and+guitars%22&amp;tbm=isch
+</pre></div>
+</div>
+</div>
+</div>
+<p><img alt="image.png" src="attachment:53846cb3-b0cd-421c-82a6-b2262371eec2.png" /></p>
+</div>
+<div class="section" id="how-to-use-a-rest-api">
+<h3>How to use a REST API<a class="headerlink" href="#how-to-use-a-rest-api" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="caching-response-content">
+<h3>Caching Response Content<a class="headerlink" href="#caching-response-content" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">json</span>
+
+<span class="n">PERMANENT_CACHE_FNAME</span> <span class="o">=</span> <span class="s2">&quot;permanent_cache.txt&quot;</span>
+<span class="n">TEMP_CACHE_FNAME</span> <span class="o">=</span> <span class="s2">&quot;this_page_cache.txt&quot;</span>
+
+<span class="k">def</span> <span class="nf">_write_to_file</span><span class="p">(</span><span class="n">cache</span><span class="p">,</span> <span class="n">fname</span><span class="p">):</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">outfile</span><span class="p">:</span>
+        <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">cache</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">_read_from_file</span><span class="p">(</span><span class="n">fname</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">infile</span><span class="p">:</span>
+            <span class="n">res</span> <span class="o">=</span> <span class="n">infile</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+            <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">{}</span>
+
+<span class="k">def</span> <span class="nf">add_to_cache</span><span class="p">(</span><span class="n">cache_file</span><span class="p">,</span> <span class="n">cache_key</span><span class="p">,</span> <span class="n">cache_value</span><span class="p">):</span>
+    <span class="n">temp_cache</span> <span class="o">=</span> <span class="n">_read_from_file</span><span class="p">(</span><span class="n">cache_file</span><span class="p">)</span>
+    <span class="n">temp_cache</span><span class="p">[</span><span class="n">cache_key</span><span class="p">]</span> <span class="o">=</span> <span class="n">cache_value</span>
+    <span class="n">_write_to_file</span><span class="p">(</span><span class="n">temp_cache</span><span class="p">,</span> <span class="n">cache_file</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">clear_cache</span><span class="p">(</span><span class="n">cache_file</span><span class="o">=</span><span class="n">TEMP_CACHE_FNAME</span><span class="p">):</span>
+    <span class="n">_write_to_file</span><span class="p">({},</span> <span class="n">cache_file</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">make_cache_key</span><span class="p">(</span><span class="n">baseurl</span><span class="p">,</span> <span class="n">params_d</span><span class="p">,</span> <span class="n">private_keys</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;api_key&quot;</span><span class="p">]):</span>
+    <span class="sd">&quot;&quot;&quot;Makes a long string representing the query.</span>
+<span class="sd">    Alphabetize the keys from the params dictionary so we get the same order each time.</span>
+<span class="sd">    Omit keys with private info.&quot;&quot;&quot;</span>
+    <span class="n">alphabetized_keys</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">params_d</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">alphabetized_keys</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">k</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">private_keys</span><span class="p">:</span>
+            <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2">-</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">params_d</span><span class="p">[</span><span class="n">k</span><span class="p">]))</span>
+    <span class="k">return</span> <span class="n">baseurl</span> <span class="o">+</span> <span class="s2">&quot;_&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="n">baseurl</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{},</span> <span class="n">private_keys_to_ignore</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;api_key&quot;</span><span class="p">],</span> <span class="n">permanent_cache_file</span><span class="o">=</span><span class="n">PERMANENT_CACHE_FNAME</span><span class="p">,</span> <span class="n">temp_cache_file</span><span class="o">=</span><span class="n">TEMP_CACHE_FNAME</span><span class="p">):</span>
+    <span class="n">full_url</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">requestURL</span><span class="p">(</span><span class="n">baseurl</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span>
+    <span class="n">cache_key</span> <span class="o">=</span> <span class="n">make_cache_key</span><span class="p">(</span><span class="n">baseurl</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">private_keys_to_ignore</span><span class="p">)</span>
+    <span class="c1"># Load the permanent and page-specific caches from files</span>
+    <span class="n">permanent_cache</span> <span class="o">=</span> <span class="n">_read_from_file</span><span class="p">(</span><span class="n">permanent_cache_file</span><span class="p">)</span>
+    <span class="n">temp_cache</span> <span class="o">=</span> <span class="n">_read_from_file</span><span class="p">(</span><span class="n">temp_cache_file</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">cache_key</span> <span class="ow">in</span> <span class="n">temp_cache</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;found in temp_cache&quot;</span><span class="p">)</span>
+        <span class="c1"># make a Response object containing text from the change, and the full_url that would have been fetched</span>
+        <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">Response</span><span class="p">(</span><span class="n">temp_cache</span><span class="p">[</span><span class="n">cache_key</span><span class="p">],</span> <span class="n">full_url</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">cache_key</span> <span class="ow">in</span> <span class="n">permanent_cache</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;found in permanent_cache&quot;</span><span class="p">)</span>
+        <span class="c1"># make a Response object containing text from the change, and the full_url that would have been fetched</span>
+        <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">Response</span><span class="p">(</span><span class="n">permanent_cache</span><span class="p">[</span><span class="n">cache_key</span><span class="p">],</span> <span class="n">full_url</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;new; adding to cache&quot;</span><span class="p">)</span>
+        <span class="c1"># actually request it</span>
+        <span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">baseurl</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span>
+        <span class="c1"># save it</span>
+        <span class="n">add_to_cache</span><span class="p">(</span><span class="n">temp_cache_file</span><span class="p">,</span> <span class="n">cache_key</span><span class="p">,</span> <span class="n">resp</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">resp</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="google-places-api">
+<h3>Google Places API<a class="headerlink" href="#google-places-api" title="Permalink to this headline">¶</a></h3>
+</div>
 </div>
 </div>
 
