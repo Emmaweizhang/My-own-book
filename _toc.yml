@@ -6,3 +6,4 @@ root: about
 chapters:
 - file: DAX
 - file: Machine Learning
+- file: Data collection with Python

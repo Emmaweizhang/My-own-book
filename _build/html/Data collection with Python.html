@@ -1,0 +1,687 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Data collection and processing with Python &#8212; Data science, health, design, statistics etc</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="author" title="About these documents" href="about.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Machine Learning" href="Machine%20Learning.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/profile photo.jfif" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Data science, health, design, statistics etc</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="about.html">
+   About
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="DAX.html">
+   DAX story
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Machine%20Learning.html">
+   Machine Learning
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Data collection and processing with Python
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/Data collection with Python.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FData collection with Python.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/Data collection with Python.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#nested-data">
+   Nested Data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#nested-iteration">
+   Nested Iteration
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#deep-and-shallow-copies">
+   Deep and Shallow Copies
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#map">
+   Map
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#filter">
+   Filter
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Data collection and processing with Python</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#nested-data">
+   Nested Data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#nested-iteration">
+   Nested Iteration
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#deep-and-shallow-copies">
+   Deep and Shallow Copies
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#map">
+   Map
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#filter">
+   Filter
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="data-collection-and-processing-with-python">
+<h1>Data collection and processing with Python<a class="headerlink" href="#data-collection-and-processing-with-python" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="nested-data">
+<h2>Nested Data<a class="headerlink" href="#nested-data" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#list</span>
+<span class="n">nested_list</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">],[</span><span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">],[</span><span class="s1">&#39;f&#39;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="s1">&#39;h&#39;</span><span class="p">]]</span>  
+<span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">nested_list</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;a&#39;, &#39;b&#39;, &#39;c&#39;]
+[&#39;d&#39;, &#39;e&#39;]
+[&#39;f&#39;, &#39;g&#39;, &#39;h&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># dictionary</span>
+<span class="n">info</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;personal_data&#39;</span><span class="p">:</span>
+         <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;Lauren&#39;</span><span class="p">,</span>
+          <span class="s1">&#39;age&#39;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
+          <span class="s1">&#39;major&#39;</span><span class="p">:</span> <span class="s1">&#39;Information Science&#39;</span><span class="p">,</span>
+          <span class="s1">&#39;physical_features&#39;</span><span class="p">:</span>
+             <span class="p">{</span><span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;eye&#39;</span><span class="p">:</span> <span class="s1">&#39;blue&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;hair&#39;</span><span class="p">:</span> <span class="s1">&#39;brown&#39;</span><span class="p">},</span>
+              <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="s2">&quot;5&#39;8&quot;</span><span class="p">}</span>
+         <span class="p">},</span>
+       <span class="s1">&#39;other&#39;</span><span class="p">:</span>
+         <span class="p">{</span><span class="s1">&#39;favorite_colors&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;purple&#39;</span><span class="p">,</span> <span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="s1">&#39;blue&#39;</span><span class="p">],</span>
+          <span class="s1">&#39;interested_in&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;social media&#39;</span><span class="p">,</span> <span class="s1">&#39;intellectual property&#39;</span><span class="p">,</span> <span class="s1">&#39;copyright&#39;</span><span class="p">,</span> <span class="s1">&#39;music&#39;</span><span class="p">,</span> <span class="s1">&#39;books&#39;</span><span class="p">]</span>
+         <span class="p">}</span>
+      <span class="p">}</span>
+<span class="n">info</span><span class="p">[</span><span class="s1">&#39;personal_data&#39;</span><span class="p">][</span><span class="s1">&#39;physical_features&#39;</span><span class="p">][</span><span class="s1">&#39;color&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;eye&#39;: &#39;blue&#39;, &#39;hair&#39;: &#39;brown&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<p>JSON stands for JavaScript Object Notation. It looks a lot like the representation of nested dictionaries and lists in python when we write them out as literals in a program, but with a few small differences (e.g., the word null instead of None). When your program receives a JSON-formatted string, generally you will want to convert it into a python object, a list or a dictionary.</p>
+<p><strong>json.loads()</strong> takes a string as input and produces a python object (a dictionary or a list) as output.</p>
+<p><strong>json.dumps()</strong> does the inverse of loads. It takes a python object (a dictionary or a list) and returns a string in JSON format.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
+<span class="n">a_string</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\n\n\n</span><span class="s1">{</span><span class="se">\n</span><span class="s1"> &quot;resultCount&quot;:25,</span><span class="se">\n</span><span class="s1"> &quot;results&quot;: [</span><span class="se">\n</span><span class="s1">{&quot;wrapperType&quot;:&quot;track&quot;, &quot;kind&quot;:&quot;podcast&quot;, &quot;collectionId&quot;:10892}]}&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a_string</span><span class="p">)</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">a_string</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;------&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">d</span><span class="p">))</span>   <span class="c1">#&#39;dict&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="s1">&#39;resultCount&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{
+ &quot;resultCount&quot;:25,
+ &quot;results&quot;: [
+{&quot;wrapperType&quot;:&quot;track&quot;, &quot;kind&quot;:&quot;podcast&quot;, &quot;collectionId&quot;:10892}]}
+------
+&lt;class &#39;dict&#39;&gt;
+dict_keys([&#39;resultCount&#39;, &#39;results&#39;])
+25
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">pretty</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">sort_keys</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;key1&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;c&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="mi">90</span><span class="p">,</span> <span class="s1">&#39;5&#39;</span><span class="p">:</span> <span class="mi">50</span><span class="p">},</span> <span class="s1">&#39;key2&#39;</span><span class="p">:{</span><span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">:</span> <span class="s2">&quot;yes&quot;</span><span class="p">}}</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;--------&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pretty</span><span class="p">(</span><span class="n">d</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;key1&#39;: {&#39;c&#39;: True, &#39;a&#39;: 90, &#39;5&#39;: 50}, &#39;key2&#39;: {&#39;b&#39;: 3, &#39;c&#39;: &#39;yes&#39;}}
+--------
+{
+  &quot;key1&quot;: {
+    &quot;5&quot;: 50,
+    &quot;a&quot;: 90,
+    &quot;c&quot;: true
+  },
+  &quot;key2&quot;: {
+    &quot;b&quot;: 3,
+    &quot;c&quot;: &quot;yes&quot;
+  }
+}
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="nested-iteration">
+<h2>Nested Iteration<a class="headerlink" href="#nested-iteration" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nested1</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">],[</span><span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">],[</span><span class="s1">&#39;f&#39;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="s1">&#39;h&#39;</span><span class="p">]]</span>
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">nested1</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;level1: &quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">x</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;     level2: &quot;</span> <span class="o">+</span> <span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>level1: 
+     level2: a
+     level2: b
+     level2: c
+level1: 
+     level2: d
+     level2: e
+level1: 
+     level2: f
+     level2: g
+     level2: h
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nested2</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">],[</span><span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">],[</span><span class="s1">&#39;f&#39;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="s1">&#39;h&#39;</span><span class="p">]]</span>
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">nested2</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;level1: &quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">list</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">x</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;     level2: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>level1: 
+1
+level1: 
+2
+level1: 
+     level2: a
+     level2: b
+     level2: c
+level1: 
+     level2: d
+     level2: e
+level1: 
+     level2: f
+     level2: g
+     level2: h
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="deep-and-shallow-copies">
+<h2>Deep and Shallow Copies<a class="headerlink" href="#deep-and-shallow-copies" title="Permalink to this headline">¶</a></h2>
+<p>When you copy a nested list, you do not also get copies of the internal lists. This means that if you perform a mutation operation on one of the original sublists, the copied version will also change. We can see this happen in the following nested list, which only has two levels.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">original</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;dogs&#39;</span><span class="p">,</span> <span class="s1">&#39;puppies&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;cats&#39;</span><span class="p">,</span> <span class="s2">&quot;kittens&quot;</span><span class="p">]]</span>
+<span class="n">copied_version</span> <span class="o">=</span> <span class="n">original</span><span class="p">[:]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">copied_version</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">copied_version</span> <span class="ow">is</span> <span class="n">original</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">copied_version</span> <span class="o">==</span> <span class="n">original</span><span class="p">)</span>  <span class="c1">#False</span>
+<span class="n">original</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="s2">&quot;canines&quot;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">original</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-------- Now look at the copied version -----------&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">copied_version</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[&#39;dogs&#39;, &#39;puppies&#39;], [&#39;cats&#39;, &#39;kittens&#39;]]
+False
+True
+[[&#39;dogs&#39;, &#39;puppies&#39;, [&#39;canines&#39;]], [&#39;cats&#39;, &#39;kittens&#39;]]
+-------- Now look at the copied version -----------
+[[&#39;dogs&#39;, &#39;puppies&#39;, [&#39;canines&#39;]], [&#39;cats&#39;, &#39;kittens&#39;]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Assuming that you don’t want to have aliased lists inside of your nested list, then you’ll need to perform nested iteration.</p>
+<p>Or equivalently, you could take advantage of the slice operator to do the copying of the inner list.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">original</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;dogs&#39;</span><span class="p">,</span> <span class="s1">&#39;puppies&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;cats&#39;</span><span class="p">,</span> <span class="s2">&quot;kittens&quot;</span><span class="p">]]</span>
+<span class="n">copied_outer_list</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">inner_list</span> <span class="ow">in</span> <span class="n">original</span><span class="p">:</span>
+    <span class="n">copied_inner_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">inner_list</span><span class="p">:</span>
+        <span class="n">copied_inner_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+    <span class="n">copied_outer_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">copied_inner_list</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">copied_outer_list</span><span class="p">)</span>
+<span class="n">original</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="s2">&quot;canines&quot;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">original</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-------- Now look at the copied version -----------&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">copied_outer_list</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[&#39;dogs&#39;, &#39;puppies&#39;], [&#39;cats&#39;, &#39;kittens&#39;]]
+[[&#39;dogs&#39;, &#39;puppies&#39;, [&#39;canines&#39;]], [&#39;cats&#39;, &#39;kittens&#39;]]
+-------- Now look at the copied version -----------
+[[&#39;dogs&#39;, &#39;puppies&#39;], [&#39;cats&#39;, &#39;kittens&#39;]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">original</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;dogs&#39;</span><span class="p">,</span> <span class="s1">&#39;puppies&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;cats&#39;</span><span class="p">,</span> <span class="s2">&quot;kittens&quot;</span><span class="p">]]</span>
+<span class="n">copied_outer_list</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">inner_list</span> <span class="ow">in</span> <span class="n">original</span><span class="p">:</span>
+    <span class="n">copied_inner_list</span> <span class="o">=</span> <span class="n">inner_list</span><span class="p">[:]</span>
+    <span class="n">copied_outer_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">copied_inner_list</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">copied_outer_list</span><span class="p">)</span>
+<span class="n">original</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="s2">&quot;canines&quot;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">original</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-------- Now look at the copied version -----------&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">copied_outer_list</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[&#39;dogs&#39;, &#39;puppies&#39;], [&#39;cats&#39;, &#39;kittens&#39;]]
+[[&#39;dogs&#39;, &#39;puppies&#39;, [&#39;canines&#39;]], [&#39;cats&#39;, &#39;kittens&#39;]]
+-------- Now look at the copied version -----------
+[[&#39;dogs&#39;, &#39;puppies&#39;], [&#39;cats&#39;, &#39;kittens&#39;]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>This process above works fine when there are only two layers or levels in a nested list. However, if we want to make a copy of a nested list that has more than two levels, then we recommend using the copy module. In the <strong>copy</strong> module there is a method called deepcopy that will take care of the operation for you.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">copy</span>
+<span class="n">original</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;canines&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;dogs&#39;</span><span class="p">,</span> <span class="s1">&#39;puppies&#39;</span><span class="p">]],</span> <span class="p">[</span><span class="s1">&#39;felines&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;cats&#39;</span><span class="p">,</span> <span class="s1">&#39;kittens&#39;</span><span class="p">]]]</span>
+<span class="n">shallow_copy_version</span> <span class="o">=</span> <span class="n">original</span><span class="p">[:]</span>
+<span class="n">deeply_copied_version</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">original</span><span class="p">)</span>
+<span class="n">original</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;Hi there&quot;</span><span class="p">)</span>
+<span class="n">original</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="s2">&quot;marsupials&quot;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-------- Original -----------&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">original</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-------- deep copy -----------&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">deeply_copied_version</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-------- shallow copy -----------&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">shallow_copy_version</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-------- Original -----------
+[[&#39;canines&#39;, [&#39;dogs&#39;, &#39;puppies&#39;], [&#39;marsupials&#39;]], [&#39;felines&#39;, [&#39;cats&#39;, &#39;kittens&#39;]], &#39;Hi there&#39;]
+-------- deep copy -----------
+[[&#39;canines&#39;, [&#39;dogs&#39;, &#39;puppies&#39;]], [&#39;felines&#39;, [&#39;cats&#39;, &#39;kittens&#39;]]]
+-------- shallow copy -----------
+[[&#39;canines&#39;, [&#39;dogs&#39;, &#39;puppies&#39;], [&#39;marsupials&#39;]], [&#39;felines&#39;, [&#39;cats&#39;, &#39;kittens&#39;]]]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="map">
+<h2>Map<a class="headerlink" href="#map" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">triple</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mi">3</span><span class="o">*</span><span class="n">value</span>
+
+<span class="k">def</span> <span class="nf">tripleStuff</span><span class="p">(</span><span class="n">a_list</span><span class="p">):</span>
+    <span class="n">new_seq</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">triple</span><span class="p">,</span> <span class="n">a_list</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">new_seq</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">quadrupleStuff</span><span class="p">(</span><span class="n">a_list</span><span class="p">):</span>
+    <span class="n">new_seq</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">value</span><span class="p">:</span> <span class="mi">4</span><span class="o">*</span><span class="n">value</span><span class="p">,</span> <span class="n">a_list</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">new_seq</span><span class="p">)</span>
+
+<span class="n">things</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">9</span><span class="p">]</span>
+<span class="n">things3</span> <span class="o">=</span> <span class="n">tripleStuff</span><span class="p">(</span><span class="n">things</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">things3</span><span class="p">)</span>
+<span class="n">things4</span> <span class="o">=</span> <span class="n">quadrupleStuff</span><span class="p">(</span><span class="n">things</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">things4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[6, 15, 27]
+[8, 20, 36]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">things</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">9</span><span class="p">]</span>
+
+<span class="n">things4</span> <span class="o">=</span> <span class="nb">map</span><span class="p">((</span><span class="k">lambda</span> <span class="n">value</span><span class="p">:</span> <span class="mi">4</span><span class="o">*</span><span class="n">value</span><span class="p">),</span> <span class="n">things</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">things4</span><span class="p">))</span>
+
+<span class="c1"># or all on one line</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">((</span><span class="k">lambda</span> <span class="n">value</span><span class="p">:</span> <span class="mi">5</span><span class="o">*</span><span class="n">value</span><span class="p">),</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[8, 20, 36]
+[5, 10, 15]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="filter">
+<h2>Filter<a class="headerlink" href="#filter" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="Machine%20Learning.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Machine Learning</p>
+        </div>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By The Jupyter Book Community<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>
