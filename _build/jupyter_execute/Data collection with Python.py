@@ -328,9 +328,7 @@ print(possible("wonderwall", "_on__r__ll", "wotnqurl"))
 # 
 # At the destination, the packets are reassembled into the original data message.
 
-# ![image.png](attachment:48fe4a30-04be-42c3-bbf5-40b216a490fd.png)
-
-# ![1.png](/Images/1.png)
+# ![1](../Images/1.png)
 Anatomy of URLs:
     <scheme>://<host>:<port>/<path>
 # ![image.png](attachment:b54bec6a-0656-480b-bd20-56677af2c36d.png)
@@ -379,7 +377,7 @@ Anatomy of URLs:
 # 
 # - one or more key-value pairs, formatted as key=value pairs and separated by the & character.
 
-# ![image.png](attachment:54c608aa-e762-4d2b-bd5b-3f53262eb335.png)
+# ![2.png](../Images/2.png)
 
 # ### Fetching in python with requests.get
 
