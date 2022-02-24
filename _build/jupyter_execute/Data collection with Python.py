@@ -327,8 +327,7 @@ print(possible("wonderwall", "_on__r__ll", "wotnqurl"))
 # Each packet is routed independently, getting passed on from one computing device to another until it reaches its destination. The computing devices that do that packet forwarding are called routers. Each router keeps an address table that says, when it gets a packet for some destination address, which of its neighbors should it pass the packet on to. The routers are constantly talking to each other passing information about how they should update their routing tables. The system was designed to be resistant to any local damage. If some of the routers stop working, the rest of the routers talk to each other and start routing packets around in a different way so that packets still reach their intended destination if there is some path to get there. It is this technical capability that has spawned metaphoric quotes like this one from John Gilmore: “The Net interprets censorship as damage and routes around it.”
 # 
 # At the destination, the packets are reassembled into the original data message.
-
-# ![1](../Images/1.png)
+# 1.png
 Anatomy of URLs:
     <scheme>://<host>:<port>/<path>
 # ![image.png](attachment:b54bec6a-0656-480b-bd20-56677af2c36d.png)
