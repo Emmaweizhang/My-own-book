@@ -714,7 +714,9 @@ True
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[8, 20, 36]
-[5, 10, 15]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[5, 10, 15]
 </pre></div>
 </div>
 </div>
@@ -1291,6 +1293,78 @@ https://api.datamuse.com/words?rel_rhy=funny
 </div>
 <div class="section" id="google-places-api">
 <h3>Google Places API<a class="headerlink" href="#google-places-api" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="c1"># You need to install the requests module to use this code</span>
+<span class="kn">import</span> <span class="nn">json</span>
+
+<span class="n">api_key</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="c1"># If you have a Google Places API key, enter it here</span>
+<span class="c1"># api_key = &#39;AIzaSy___IDByT70&#39;</span>
+<span class="c1"># https://developers.google.com/maps/documentation/geocoding/intro</span>
+
+<span class="k">if</span> <span class="n">api_key</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span>
+    <span class="n">api_key</span> <span class="o">=</span> <span class="mi">42</span>
+    <span class="n">serviceurl</span> <span class="o">=</span> <span class="s1">&#39;http://py4e-data.dr-chuck.net/json&#39;</span>
+<span class="k">else</span> <span class="p">:</span>
+    <span class="n">serviceurl</span> <span class="o">=</span> <span class="s1">&#39;https://maps.googleapis.com/maps/api/geocode/json&#39;</span>
+
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">address</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;Enter location: &#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">address</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span> <span class="k">break</span>
+
+    <span class="n">payload</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+    <span class="n">payload</span><span class="p">[</span><span class="s1">&#39;address&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">address</span>
+    <span class="k">if</span> <span class="n">api_key</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">False</span><span class="p">:</span> <span class="n">payload</span><span class="p">[</span><span class="s1">&#39;key&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">api_key</span>
+
+    <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">serviceurl</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Retrieved&#39;</span><span class="p">,</span> <span class="n">r</span><span class="o">.</span><span class="n">url</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">text</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Retrieved&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">),</span> <span class="s1">&#39;characters&#39;</span><span class="p">)</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">js</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="n">js</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">js</span> <span class="ow">or</span> <span class="s1">&#39;status&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">js</span> <span class="ow">or</span> <span class="n">js</span><span class="p">[</span><span class="s1">&#39;status&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;OK&#39;</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;==== Failure To Retrieve ====&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="k">continue</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">js</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
+
+    <span class="n">lat</span> <span class="o">=</span> <span class="n">js</span><span class="p">[</span><span class="s1">&#39;results&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;geometry&#39;</span><span class="p">][</span><span class="s1">&#39;location&#39;</span><span class="p">][</span><span class="s1">&#39;lat&#39;</span><span class="p">]</span>
+    <span class="n">lng</span> <span class="o">=</span> <span class="n">js</span><span class="p">[</span><span class="s1">&#39;results&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;geometry&#39;</span><span class="p">][</span><span class="s1">&#39;location&#39;</span><span class="p">][</span><span class="s1">&#39;lng&#39;</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;lat&#39;</span><span class="p">,</span> <span class="n">lat</span><span class="p">,</span> <span class="s1">&#39;lng&#39;</span><span class="p">,</span> <span class="n">lng</span><span class="p">)</span>
+    <span class="n">location</span> <span class="o">=</span> <span class="n">js</span><span class="p">[</span><span class="s1">&#39;results&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;formatted_address&#39;</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">location</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">StdinNotImplementedError</span><span class="g g-Whitespace">                  </span>Traceback (most recent call last)
+<span class="ne">C</span>:\Users\EMMA~1.ZHA\AppData\Local\Temp/ipykernel_16680/1008616464.py in &lt;module&gt;
+<span class="g g-Whitespace">     </span><span class="mi">15</span> 
+<span class="g g-Whitespace">     </span><span class="mi">16</span> <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+<span class="ne">---&gt; </span><span class="mi">17</span>     <span class="n">address</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;Enter location: &#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">18</span>     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">address</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span> <span class="k">break</span>
+<span class="g g-Whitespace">     </span><span class="mi">19</span> 
+
+<span class="nn">~\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\ipykernel\kernelbase.py</span> in <span class="ni">raw_input</span><span class="nt">(self, prompt)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1001</span>         <span class="s2">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">1002</span><span class="s2">         if not self._allow_stdin:</span>
+<span class="ne">-&gt; </span><span class="mi">1003</span><span class="s2">             raise StdinNotImplementedError(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1004</span><span class="s2">                 &quot;raw_input was called, but this frontend does not support input requests.&quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">1005</span><span class="s2">             )</span>
+
+<span class="ne">StdinNotImplementedError</span>: raw_input was called, but this frontend does not support input requests.
+</pre></div>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
