@@ -330,7 +330,7 @@ print(possible("wonderwall", "_on__r__ll", "wotnqurl"))
 
 # ![image.png](attachment:48fe4a30-04be-42c3-bbf5-40b216a490fd.png)
 
-# ![Screenshot2022-02-24213515.png](/Images/Screenshot2022-02-24 213515.png)
+# ![1.png](/Images/1.png)
 Anatomy of URLs:
     <scheme>://<host>:<port>/<path>
 # ![image.png](attachment:b54bec6a-0656-480b-bd20-56677af2c36d.png)
