@@ -377,7 +377,7 @@ Anatomy of URLs:
 # 
 # - one or more key-value pairs, formatted as key=value pairs and separated by the & character.
 
-# ![2.png](../Images/2.png)
+# ![2](../Images/2.png)
 
 # ### Fetching in python with requests.get
 
