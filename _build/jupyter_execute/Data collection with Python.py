@@ -327,10 +327,13 @@ print(possible("wonderwall", "_on__r__ll", "wotnqurl"))
 # Each packet is routed independently, getting passed on from one computing device to another until it reaches its destination. The computing devices that do that packet forwarding are called routers. Each router keeps an address table that says, when it gets a packet for some destination address, which of its neighbors should it pass the packet on to. The routers are constantly talking to each other passing information about how they should update their routing tables. The system was designed to be resistant to any local damage. If some of the routers stop working, the rest of the routers talk to each other and start routing packets around in a different way so that packets still reach their intended destination if there is some path to get there. It is this technical capability that has spawned metaphoric quotes like this one from John Gilmore: “The Net interprets censorship as damage and routes around it.”
 # 
 # At the destination, the packets are reassembled into the original data message.
-# 1.png
-Anatomy of URLs:
-    <scheme>://<host>:<port>/<path>
-# ![image.png](attachment:b54bec6a-0656-480b-bd20-56677af2c36d.png)
+# 
+# ![1.png](Images/1.png)
+
+# Anatomy of URLs:
+#     \<scheme\>://\<host\>:\<port\>/\<path\>
+
+# ![3.png](Images/3.png)
 
 # ### The HTTP protocol
 
@@ -376,7 +379,7 @@ Anatomy of URLs:
 # 
 # - one or more key-value pairs, formatted as key=value pairs and separated by the & character.
 
-# ![2](../Images/2.png)
+# ![2](Images/2.png)
 
 # ### Fetching in python with requests.get
 
@@ -407,22 +410,24 @@ results = requests.get("https://google.com/search", params=d)
 print(results.url)
 
 
-# ![image.png](attachment:53846cb3-b0cd-421c-82a6-b2262371eec2.png)
+# ![4.png](Images/4.png)
 
 # ### How to use a REST API
-Suppose you have learned about the existence of an API, and want to figure out how to use it. There are five questions that you’ll need to answer.
 
-1. What is the baseurl?
+# Suppose you have learned about the existence of an API, and want to figure out how to use it. There are five questions that you’ll need to answer.
+# 
+# 1. What is the baseurl?
+# 
+# 2. What keys should you provide in the dictionary you pass for the params parameter?
+# 
+# 3. What values should you provide associated with those keys?
+# 
+# 4. Do you need to authenticate yourself as a licensed user of the API and, if so, how?
+# 
+# 5. What is the structure and meaning of the data that will be provided?
+# 
+# The answers to these questions always depend on design choices made by the service provider who is running the server. Thus, the official documentation they provide will usually be the most helpful. It may also be helpful to find example code snippets or full URLs and responses; if you don’t find that in the documentation, you may want to search for it on Google or StackOverflow.
 
-2. What keys should you provide in the dictionary you pass for the params parameter?
-
-3. What values should you provide associated with those keys?
-
-4. Do you need to authenticate yourself as a licensed user of the API and, if so, how?
-
-5. What is the structure and meaning of the data that will be provided?
-
-The answers to these questions always depend on design choices made by the service provider who is running the server. Thus, the official documentation they provide will usually be the most helpful. It may also be helpful to find example code snippets or full URLs and responses; if you don’t find that in the documentation, you may want to search for it on Google or StackOverflow.
 # ### Caching Response Content
 
 # In[24]:
@@ -487,97 +492,66 @@ def get(baseurl, params={}, private_keys_to_ignore=["api_key"], permanent_cache_
         add_to_cache(temp_cache_file, cache_key, resp.text)
         return resp
 
-Above can be turned into a package to use.
-import request_with_caching
-# it's not found in the permanent cache
-res = requests_with_caching.get("https://api.datamuse.com/words?rel_rhy=happy", permanent_cache_file="datamuse_cache.txt")
-print(res.text[:100])
-# this time it will be found in the temporary cache
-res = requests_with_caching.get("https://api.datamuse.com/words?rel_rhy=happy", permanent_cache_file="datamuse_cache.txt")
-# This one is in the permanent cache.
-res = requests_with_caching.get("https://api.datamuse.com/words?rel_rhy=funny", permanent_cache_file="datamuse_cache.txt")import requests_with_caching
-import json
-
-parameters = {"term": "Ann Arbor", "entity": "podcast"}
-iTunes_response = requests_with_caching.get("https://itunes.apple.com/search", params = parameters, permanent_cache_file="itunes_cache.txt")
-
-py_data = json.loads(iTunes_response.text)
-for r in py_data['results']:
-    print(r['trackName'])# import statements
-import requests_with_caching
-import json
-# import webbrowser
-
-# apply for a flickr authentication key at http://www.flickr.com/services/apps/create/apply/?
-# paste the key (not the secret) as the value of the variable flickr_key
-flickr_key = 'yourkeyhere'
-
-def get_flickr_data(tags_string):
-    baseurl = "https://api.flickr.com/services/rest/"
-    params_diction = {}
-    params_diction["api_key"] = flickr_key # from the above global variable
-    params_diction["tags"] = tags_string # must be a comma separated string to work correctly
-    params_diction["tag_mode"] = "all"
-    params_diction["method"] = "flickr.photos.search"
-    params_diction["per_page"] = 5
-    params_diction["media"] = "photos"
-    params_diction["format"] = "json"
-    params_diction["nojsoncallback"] = 1
-    flickr_resp = requests_with_caching.get(baseurl, params = params_diction, permanent_cache_file="flickr_cache.txt")
-    # Useful for debugging: print the url! Uncomment the below line to do so.
-    print(flickr_resp.url) # Paste the result into the browser to check it out...
-    return flickr_resp.json()
-
-result_river_mts = get_flickr_data("river,mountains")
-
-# Some code to open up a few photos that are tagged with the mountains and river tags...
-
-photos = result_river_mts['photos']['photo']
-for photo in photos:
-    owner = photo['owner']
-    photo_id = photo['id']
-    url = 'https://www.flickr.com/photos/{}/{}'.format(owner, photo_id)
-    print(url)
-    # webbrowser.open(url)Sometimes, you may need to deal with text that includes characters that are not part of the standard English alphabet, such as é, ö, Ф, or ¥. This is especially likely if you use REST APIs to fetch user-contributed content from social media sites like Twitter, Facebook, or flickr.
-
-Python’s strings are in unicode, which allows for characters to be from a much larger alphabet, including more than 75,000 ideographic characters used in Chinese, Japanese, and Korean alphabets. Everything works fine inside Python, for operations like slicing and appending and concatenating strings and using .find() or the in operator.
-
-Things only get tricky when you want to input strings into Python, or print them to an output window or write them to a file.
-
-For output, your terminal (output) window will typically be set up to display characters only from a restricted set of languages (perhaps just English). If you issue a print statement on a string containing other characters, it may not display correctly in your terminal window. Indeed, you may get an error message. We will offer a workaround later on this page.
-
-If you want to store unicode text in a file, you have to choose an “encoding”. This is analogous to the encoding of special characters in a URL string, but not the same. In a file, each unicode character has to be encoded as one or more “bytes” for storage in a file. We have avoided low-level details about data encodings until now, but understanding a little about bits and bytes will help make sense of this.
-
-A bit is a BInary digiT. It is a single value restricted to two (binary) possibilities, which we conventionally write as 0 or 1. Computers store bits as electrical charges (high or low voltage) or as magnetic polarities, or some other way that we need not be concerned about. A sequence of eight 0-1 bits is called a byte. For example: 01001000.
-
-There are 2^^8=256 distinct eight-bit bytes. If we only had 256 possible letters in our alphabet, we could simply encode each letter as one of the available bytes. When we restrict ourselves to regular python strings, using only the ASCII alphabet (English, plus a few special characters), the encoding is that simple, so simple that we haven’t had to think about it before.
-
-When there are 75,000 possible characters, they can’t all be encoded with a single byte, because there are only 256 distinct bytes (eight-bit sequences). There are many possible encodings. The one you will be most likely to encounter, using REST APIs, is called UTF-8. A single unicode character is mapped to a sequence of up to four bytes.
-
-If you read in a UTF-8 encoded text, and get the contents using .read() or .readlines(), you will need to “decode” the contents in order to turn it into a proper unicode string that you can read and use.
-
-Fortunately, the requests module will normally handle this for us automatically. When we fetch a webpage that is in json format, the webpage will have a header called ‘content-type’ that will say something like application/json; charset=utf8. If it specifies the utf8 character set in that way, the requests module will automatically decode the contents into unicode: requests.get('that web page').text will yield a string, with each of those sequences of one to four bytes coverted into a single character.
-
-If, for some reason, you get json-formatted text that is utf-encoded but the requests module hasn’t magically decoded it for you, the json.loads() function call can take care of the decoding for you. loads() takes an optional parameter, encoding. Its default value is ‘utf-8’, so you don’t need to specify it unless you think the text you have received was in some other encoding than ‘utf-8’.
-
-Note
-
-You may see a u before the string in a Python 2.7 program indicating that it’s a unicode string. In Python 3, all strings are unicode strings, so you shouldn’t encounter any of those strange u characters in this textbook.
-
-Once you have python strings, everything will work fine until you try to print or write the contents to a file. If you print, and your terminal window is not set up to display that language, you may get a strange output, or an error message.
-
-If you try to write to a file with unicode strings, you may get an error. When you write a unicode string to a file, Python tries to encode it in ASCII. If there is a non-ASCII character, the execution fails and raises an error that looks like this: UnicodeEncodeError: 'ascii' codec can't encode character u'\xea' in position 1: ordinal not in range(128).
-
-One solution is to use the Python method to encode the string, using a format such as utf-8. For example, s.encode('utf-8') will encode string s as utf-8. That will encode non-ASCII characters with multiple character sequences that are difficult for people to read but can decoded back into single Unicode characters. This is often the best way.
-
-Another quick-and-dirty option, if you just have a few stray characters that are getting in your way, is to replace any non-ASCII characters with question marks. For example, s.encode('ascii', 'replace'). Of course, replacing characters with question marks destroys some of the information, but it may be helpful in some circumstances.
-
-Note
-
-In the Runestone online environment, the .encode() and .decode() methods are not available for strings. You can only use them in a full python environment. In all of the cached data that we provide from REST APIs in this online book, we have tried to avoid Unicode encoding issues.
-# ### Google Places API
 
 # In[25]:
+
+
+get_ipython().run_cell_magic('script', 'false --no-raise-error', '#Above can be turned into a package to use.\nimport request_with_caching\n# it\'s not found in the permanent cache\nres = requests_with_caching.get("https://api.datamuse.com/words?rel_rhy=happy", permanent_cache_file="datamuse_cache.txt")\nprint(res.text[:100])\n# this time it will be found in the temporary cache\nres = requests_with_caching.get("https://api.datamuse.com/words?rel_rhy=happy", permanent_cache_file="datamuse_cache.txt")\n# This one is in the permanent cache.\nres = requests_with_caching.get("https://api.datamuse.com/words?rel_rhy=funny", permanent_cache_file="datamuse_cache.txt")')
+
+
+# In[26]:
+
+
+get_ipython().run_cell_magic('script', 'false', 'import requests_with_caching\nimport json\n\nparameters = {"term": "Ann Arbor", "entity": "podcast"}\niTunes_response = requests_with_caching.get("https://itunes.apple.com/search", params = parameters, permanent_cache_file="itunes_cache.txt")\n\npy_data = json.loads(iTunes_response.text)\nfor r in py_data[\'results\']:\n    print(r[\'trackName\'])')
+
+
+# In[27]:
+
+
+get_ipython().run_cell_magic('script', 'false', '# import statements\nimport requests_with_caching\nimport json\n# import webbrowser\n\n# apply for a flickr authentication key at http://www.flickr.com/services/apps/create/apply/?\n# paste the key (not the secret) as the value of the variable flickr_key\nflickr_key = \'yourkeyhere\'\n\ndef get_flickr_data(tags_string):\n    baseurl = "https://api.flickr.com/services/rest/"\n    params_diction = {}\n    params_diction["api_key"] = flickr_key # from the above global variable\n    params_diction["tags"] = tags_string # must be a comma separated string to work correctly\n    params_diction["tag_mode"] = "all"\n    params_diction["method"] = "flickr.photos.search"\n    params_diction["per_page"] = 5\n    params_diction["media"] = "photos"\n    params_diction["format"] = "json"\n    params_diction["nojsoncallback"] = 1\n    flickr_resp = requests_with_caching.get(baseurl, params = params_diction, permanent_cache_file="flickr_cache.txt")\n    # Useful for debugging: print the url! Uncomment the below line to do so.\n    print(flickr_resp.url) # Paste the result into the browser to check it out...\n    return flickr_resp.json()\n\nresult_river_mts = get_flickr_data("river,mountains")\n\n# Some code to open up a few photos that are tagged with the mountains and river tags...\n\nphotos = result_river_mts[\'photos\'][\'photo\']\nfor photo in photos:\n    owner = photo[\'owner\']\n    photo_id = photo[\'id\']\n    url = \'https://www.flickr.com/photos/{}/{}\'.format(owner, photo_id)\n    print(url)\n    # webbrowser.open(url)')
+
+
+# Sometimes, you may need to deal with text that includes characters that are not part of the standard English alphabet, such as é, ö, Ф, or ¥. This is especially likely if you use REST APIs to fetch user-contributed content from social media sites like Twitter, Facebook, or flickr.
+# 
+# Python’s strings are in unicode, which allows for characters to be from a much larger alphabet, including more than 75,000 ideographic characters used in Chinese, Japanese, and Korean alphabets. Everything works fine inside Python, for operations like slicing and appending and concatenating strings and using .find() or the in operator.
+# 
+# Things only get tricky when you want to input strings into Python, or print them to an output window or write them to a file.
+# 
+# For output, your terminal (output) window will typically be set up to display characters only from a restricted set of languages (perhaps just English). If you issue a print statement on a string containing other characters, it may not display correctly in your terminal window. Indeed, you may get an error message. We will offer a workaround later on this page.
+# 
+# If you want to store unicode text in a file, you have to choose an “encoding”. This is analogous to the encoding of special characters in a URL string, but not the same. In a file, each unicode character has to be encoded as one or more “bytes” for storage in a file. We have avoided low-level details about data encodings until now, but understanding a little about bits and bytes will help make sense of this.
+# 
+# A bit is a BInary digiT. It is a single value restricted to two (binary) possibilities, which we conventionally write as 0 or 1. Computers store bits as electrical charges (high or low voltage) or as magnetic polarities, or some other way that we need not be concerned about. A sequence of eight 0-1 bits is called a byte. For example: 01001000.
+# 
+# There are 2^^8=256 distinct eight-bit bytes. If we only had 256 possible letters in our alphabet, we could simply encode each letter as one of the available bytes. When we restrict ourselves to regular python strings, using only the ASCII alphabet (English, plus a few special characters), the encoding is that simple, so simple that we haven’t had to think about it before.
+# 
+# When there are 75,000 possible characters, they can’t all be encoded with a single byte, because there are only 256 distinct bytes (eight-bit sequences). There are many possible encodings. The one you will be most likely to encounter, using REST APIs, is called UTF-8. A single unicode character is mapped to a sequence of up to four bytes.
+# 
+# If you read in a UTF-8 encoded text, and get the contents using .read() or .readlines(), you will need to “decode” the contents in order to turn it into a proper unicode string that you can read and use.
+# 
+# Fortunately, the requests module will normally handle this for us automatically. When we fetch a webpage that is in json format, the webpage will have a header called ‘content-type’ that will say something like application/json; charset=utf8. If it specifies the utf8 character set in that way, the requests module will automatically decode the contents into unicode: requests.get('that web page').text will yield a string, with each of those sequences of one to four bytes coverted into a single character.
+# 
+# If, for some reason, you get json-formatted text that is utf-encoded but the requests module hasn’t magically decoded it for you, the json.loads() function call can take care of the decoding for you. loads() takes an optional parameter, encoding. Its default value is ‘utf-8’, so you don’t need to specify it unless you think the text you have received was in some other encoding than ‘utf-8’.
+# 
+# Note
+# 
+# You may see a u before the string in a Python 2.7 program indicating that it’s a unicode string. In Python 3, all strings are unicode strings, so you shouldn’t encounter any of those strange u characters in this textbook.
+# 
+# Once you have python strings, everything will work fine until you try to print or write the contents to a file. If you print, and your terminal window is not set up to display that language, you may get a strange output, or an error message.
+# 
+# If you try to write to a file with unicode strings, you may get an error. When you write a unicode string to a file, Python tries to encode it in ASCII. If there is a non-ASCII character, the execution fails and raises an error that looks like this: UnicodeEncodeError: 'ascii' codec can't encode character u'\xea' in position 1: ordinal not in range(128).
+# 
+# One solution is to use the Python method to encode the string, using a format such as utf-8. For example, s.encode('utf-8') will encode string s as utf-8. That will encode non-ASCII characters with multiple character sequences that are difficult for people to read but can decoded back into single Unicode characters. This is often the best way.
+# 
+# Another quick-and-dirty option, if you just have a few stray characters that are getting in your way, is to replace any non-ASCII characters with question marks. For example, s.encode('ascii', 'replace'). Of course, replacing characters with question marks destroys some of the information, but it may be helpful in some circumstances.
+# 
+# Note
+# 
+# In the Runestone online environment, the .encode() and .decode() methods are not available for strings. You can only use them in a full python environment. In all of the cached data that we provide from REST APIs in this online book, we have tried to avoid Unicode encoding issues.
+
+# ### Google Places API
+
+# In[28]:
 
 
 import requests

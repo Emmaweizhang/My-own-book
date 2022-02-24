@@ -898,9 +898,11 @@ False
 <p>Data is chopped up into reasonable sized packets (up to 65,535 bytes, but usually much smaller).</p>
 <p>Each data packet has a header that includes the destination IP address.</p>
 <p>Each packet is routed independently, getting passed on from one computing device to another until it reaches its destination. The computing devices that do that packet forwarding are called routers. Each router keeps an address table that says, when it gets a packet for some destination address, which of its neighbors should it pass the packet on to. The routers are constantly talking to each other passing information about how they should update their routing tables. The system was designed to be resistant to any local damage. If some of the routers stop working, the rest of the routers talk to each other and start routing packets around in a different way so that packets still reach their intended destination if there is some path to get there. It is this technical capability that has spawned metaphoric quotes like this one from John Gilmore: “The Net interprets censorship as damage and routes around it.”</p>
-<p>At the destination, the packets are reassembled into the original data message.
-1.png</p>
-<p><img alt="image.png" src="attachment:b54bec6a-0656-480b-bd20-56677af2c36d.png" /></p>
+<p>At the destination, the packets are reassembled into the original data message.</p>
+<p><img alt="1.png" src="_images/1.png" /></p>
+<p>Anatomy of URLs:
+&lt;scheme&gt;://&lt;host&gt;:&lt;port&gt;/&lt;path&gt;</p>
+<p><img alt="3.png" src="_images/3.png" /></p>
 <div class="section" id="the-http-protocol">
 <h3>The HTTP protocol<a class="headerlink" href="#the-http-protocol" title="Permalink to this headline">¶</a></h3>
 <p>A protocol specifies the order in which parties will speak and the format of what they say and the content of appropriate responses.</p>
@@ -930,7 +932,7 @@ a response code indicating whether the server thinks it has fulfilled the reques
 <li><p>a ? character</p></li>
 <li><p>one or more key-value pairs, formatted as key=value pairs and separated by the &amp; character.</p></li>
 </ul>
-<p><img alt="2" src="../Images/2.png" /></p>
+<p><img alt="2" src="_images/2.png" /></p>
 </div>
 <div class="section" id="fetching-in-python-with-requests-get">
 <h3>Fetching in python with requests.get<a class="headerlink" href="#fetching-in-python-with-requests-get" title="Permalink to this headline">¶</a></h3>
@@ -1217,10 +1219,19 @@ https://api.datamuse.com/words?rel_rhy=funny
 </div>
 </div>
 </div>
-<p><img alt="image.png" src="attachment:53846cb3-b0cd-421c-82a6-b2262371eec2.png" /></p>
+<p><img alt="4.png" src="_images/4.png" /></p>
 </div>
 <div class="section" id="how-to-use-a-rest-api">
 <h3>How to use a REST API<a class="headerlink" href="#how-to-use-a-rest-api" title="Permalink to this headline">¶</a></h3>
+<p>Suppose you have learned about the existence of an API, and want to figure out how to use it. There are five questions that you’ll need to answer.</p>
+<ol class="simple">
+<li><p>What is the baseurl?</p></li>
+<li><p>What keys should you provide in the dictionary you pass for the params parameter?</p></li>
+<li><p>What values should you provide associated with those keys?</p></li>
+<li><p>Do you need to authenticate yourself as a licensed user of the API and, if so, how?</p></li>
+<li><p>What is the structure and meaning of the data that will be provided?</p></li>
+</ol>
+<p>The answers to these questions always depend on design choices made by the service provider who is running the server. Thus, the official documentation they provide will usually be the most helpful. It may also be helpful to find example code snippets or full URLs and responses; if you don’t find that in the documentation, you may want to search for it on Google or StackOverflow.</p>
 </div>
 <div class="section" id="caching-response-content">
 <h3>Caching Response Content<a class="headerlink" href="#caching-response-content" title="Permalink to this headline">¶</a></h3>
@@ -1288,6 +1299,115 @@ https://api.datamuse.com/words?rel_rhy=funny
 </div>
 </div>
 </div>
+<div class="cell tag_no-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">script</span> false --no-raise-error
+#Above can be turned into a package to use.
+import request_with_caching
+# it&#39;s not found in the permanent cache
+res = requests_with_caching.get(&quot;https://api.datamuse.com/words?rel_rhy=happy&quot;, permanent_cache_file=&quot;datamuse_cache.txt&quot;)
+print(res.text[:100])
+# this time it will be found in the temporary cache
+res = requests_with_caching.get(&quot;https://api.datamuse.com/words?rel_rhy=happy&quot;, permanent_cache_file=&quot;datamuse_cache.txt&quot;)
+# This one is in the permanent cache.
+res = requests_with_caching.get(&quot;https://api.datamuse.com/words?rel_rhy=funny&quot;, permanent_cache_file=&quot;datamuse_cache.txt&quot;)
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Couldn&#39;t find program: &#39;false&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_no-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">script</span> false
+import requests_with_caching
+import json
+
+parameters = {&quot;term&quot;: &quot;Ann Arbor&quot;, &quot;entity&quot;: &quot;podcast&quot;}
+iTunes_response = requests_with_caching.get(&quot;https://itunes.apple.com/search&quot;, params = parameters, permanent_cache_file=&quot;itunes_cache.txt&quot;)
+
+py_data = json.loads(iTunes_response.text)
+for r in py_data[&#39;results&#39;]:
+    print(r[&#39;trackName&#39;])
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Couldn&#39;t find program: &#39;false&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">script</span> false
+# import statements
+import requests_with_caching
+import json
+# import webbrowser
+
+# apply for a flickr authentication key at http://www.flickr.com/services/apps/create/apply/?
+# paste the key (not the secret) as the value of the variable flickr_key
+flickr_key = &#39;yourkeyhere&#39;
+
+def get_flickr_data(tags_string):
+    baseurl = &quot;https://api.flickr.com/services/rest/&quot;
+    params_diction = {}
+    params_diction[&quot;api_key&quot;] = flickr_key # from the above global variable
+    params_diction[&quot;tags&quot;] = tags_string # must be a comma separated string to work correctly
+    params_diction[&quot;tag_mode&quot;] = &quot;all&quot;
+    params_diction[&quot;method&quot;] = &quot;flickr.photos.search&quot;
+    params_diction[&quot;per_page&quot;] = 5
+    params_diction[&quot;media&quot;] = &quot;photos&quot;
+    params_diction[&quot;format&quot;] = &quot;json&quot;
+    params_diction[&quot;nojsoncallback&quot;] = 1
+    flickr_resp = requests_with_caching.get(baseurl, params = params_diction, permanent_cache_file=&quot;flickr_cache.txt&quot;)
+    # Useful for debugging: print the url! Uncomment the below line to do so.
+    print(flickr_resp.url) # Paste the result into the browser to check it out...
+    return flickr_resp.json()
+
+result_river_mts = get_flickr_data(&quot;river,mountains&quot;)
+
+# Some code to open up a few photos that are tagged with the mountains and river tags...
+
+photos = result_river_mts[&#39;photos&#39;][&#39;photo&#39;]
+for photo in photos:
+    owner = photo[&#39;owner&#39;]
+    photo_id = photo[&#39;id&#39;]
+    url = &#39;https://www.flickr.com/photos/{}/{}&#39;.format(owner, photo_id)
+    print(url)
+    # webbrowser.open(url)
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Couldn&#39;t find program: &#39;false&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Sometimes, you may need to deal with text that includes characters that are not part of the standard English alphabet, such as é, ö, Ф, or ¥. This is especially likely if you use REST APIs to fetch user-contributed content from social media sites like Twitter, Facebook, or flickr.</p>
+<p>Python’s strings are in unicode, which allows for characters to be from a much larger alphabet, including more than 75,000 ideographic characters used in Chinese, Japanese, and Korean alphabets. Everything works fine inside Python, for operations like slicing and appending and concatenating strings and using .find() or the in operator.</p>
+<p>Things only get tricky when you want to input strings into Python, or print them to an output window or write them to a file.</p>
+<p>For output, your terminal (output) window will typically be set up to display characters only from a restricted set of languages (perhaps just English). If you issue a print statement on a string containing other characters, it may not display correctly in your terminal window. Indeed, you may get an error message. We will offer a workaround later on this page.</p>
+<p>If you want to store unicode text in a file, you have to choose an “encoding”. This is analogous to the encoding of special characters in a URL string, but not the same. In a file, each unicode character has to be encoded as one or more “bytes” for storage in a file. We have avoided low-level details about data encodings until now, but understanding a little about bits and bytes will help make sense of this.</p>
+<p>A bit is a BInary digiT. It is a single value restricted to two (binary) possibilities, which we conventionally write as 0 or 1. Computers store bits as electrical charges (high or low voltage) or as magnetic polarities, or some other way that we need not be concerned about. A sequence of eight 0-1 bits is called a byte. For example: 01001000.</p>
+<p>There are 2^^8=256 distinct eight-bit bytes. If we only had 256 possible letters in our alphabet, we could simply encode each letter as one of the available bytes. When we restrict ourselves to regular python strings, using only the ASCII alphabet (English, plus a few special characters), the encoding is that simple, so simple that we haven’t had to think about it before.</p>
+<p>When there are 75,000 possible characters, they can’t all be encoded with a single byte, because there are only 256 distinct bytes (eight-bit sequences). There are many possible encodings. The one you will be most likely to encounter, using REST APIs, is called UTF-8. A single unicode character is mapped to a sequence of up to four bytes.</p>
+<p>If you read in a UTF-8 encoded text, and get the contents using .read() or .readlines(), you will need to “decode” the contents in order to turn it into a proper unicode string that you can read and use.</p>
+<p>Fortunately, the requests module will normally handle this for us automatically. When we fetch a webpage that is in json format, the webpage will have a header called ‘content-type’ that will say something like application/json; charset=utf8. If it specifies the utf8 character set in that way, the requests module will automatically decode the contents into unicode: requests.get(‘that web page’).text will yield a string, with each of those sequences of one to four bytes coverted into a single character.</p>
+<p>If, for some reason, you get json-formatted text that is utf-encoded but the requests module hasn’t magically decoded it for you, the json.loads() function call can take care of the decoding for you. loads() takes an optional parameter, encoding. Its default value is ‘utf-8’, so you don’t need to specify it unless you think the text you have received was in some other encoding than ‘utf-8’.</p>
+<p>Note</p>
+<p>You may see a u before the string in a Python 2.7 program indicating that it’s a unicode string. In Python 3, all strings are unicode strings, so you shouldn’t encounter any of those strange u characters in this textbook.</p>
+<p>Once you have python strings, everything will work fine until you try to print or write the contents to a file. If you print, and your terminal window is not set up to display that language, you may get a strange output, or an error message.</p>
+<p>If you try to write to a file with unicode strings, you may get an error. When you write a unicode string to a file, Python tries to encode it in ASCII. If there is a non-ASCII character, the execution fails and raises an error that looks like this: UnicodeEncodeError: ‘ascii’ codec can’t encode character u’\xea’ in position 1: ordinal not in range(128).</p>
+<p>One solution is to use the Python method to encode the string, using a format such as utf-8. For example, s.encode(‘utf-8’) will encode string s as utf-8. That will encode non-ASCII characters with multiple character sequences that are difficult for people to read but can decoded back into single Unicode characters. This is often the best way.</p>
+<p>Another quick-and-dirty option, if you just have a few stray characters that are getting in your way, is to replace any non-ASCII characters with question marks. For example, s.encode(‘ascii’, ‘replace’). Of course, replacing characters with question marks destroys some of the information, but it may be helpful in some circumstances.</p>
+<p>Note</p>
+<p>In the Runestone online environment, the .encode() and .decode() methods are not available for strings. You can only use them in a full python environment. In all of the cached data that we provide from REST APIs in this online book, we have tried to avoid Unicode encoding issues.</p>
 </div>
 <div class="section" id="google-places-api">
 <h3>Google Places API<a class="headerlink" href="#google-places-api" title="Permalink to this headline">¶</a></h3>
@@ -1344,7 +1464,7 @@ https://api.datamuse.com/words?rel_rhy=funny
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">StdinNotImplementedError</span><span class="g g-Whitespace">                  </span>Traceback (most recent call last)
-<span class="ne">C</span>:\Users\EMMA~1.ZHA\AppData\Local\Temp/ipykernel_7192/1008616464.py in &lt;module&gt;
+<span class="ne">C</span>:\Users\EMMA~1.ZHA\AppData\Local\Temp/ipykernel_18820/1008616464.py in &lt;module&gt;
 <span class="g g-Whitespace">     </span><span class="mi">15</span> 
 <span class="g g-Whitespace">     </span><span class="mi">16</span> <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
 <span class="ne">---&gt; </span><span class="mi">17</span>     <span class="n">address</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;Enter location: &#39;</span><span class="p">)</span>
