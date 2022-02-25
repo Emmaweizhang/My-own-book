@@ -54,8 +54,7 @@
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Data collection with Python" href="Data%20collection%20with%20Python.html" />
-    <link rel="prev" title="DAX story" href="DAX.html" />
+    <link rel="prev" title="Basic functions" href="API.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -99,20 +98,44 @@
   </a>
  </li>
 </ul>
-<ul class="current nav bd-sidenav">
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  DAX
+ </span>
+</p>
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="DAX.html">
    DAX story
   </a>
  </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Machine Learning
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Data collection
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Basic%20functions.html">
+   Basic functions
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="Data%20collection%20with%20Python.html">
-   Data collection with Python
+  <a class="reference internal" href="API.html">
+   Basic functions
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Machine Learning
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Machine Learning
   </a>
  </li>
 </ul>
@@ -156,7 +179,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/Machine Learning.ipynb"><button type="button"
+        <a class="dropdown-buttons" href="_sources/Introduction.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
@@ -176,7 +199,7 @@
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FMachine Learning.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FIntroduction.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -197,7 +220,7 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/Machine Learning.ipynb"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/Introduction.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="_static/images/logo_binder.svg"
@@ -219,6 +242,28 @@
             </div>
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#supervised-learning">
+   Supervised Learning
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#unsupervised-learning">
+   Unsupervised Learning
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cost-function">
+     Cost Function
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cost-function-intuition-1">
+     Cost Function - Intuition 1
+    </a>
+   </li>
+  </ul>
+ </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#markdown-notebooks">
    Markdown + notebooks
@@ -254,6 +299,28 @@
                         </div>
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#supervised-learning">
+   Supervised Learning
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#unsupervised-learning">
+   Unsupervised Learning
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cost-function">
+     Cost Function
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cost-function-intuition-1">
+     Cost Function - Intuition 1
+    </a>
+   </li>
+  </ul>
+ </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#markdown-notebooks">
    Markdown + notebooks
@@ -291,8 +358,37 @@
 <li><p>Supervised learning</p></li>
 <li><p>Unsupervised learning.</p></li>
 </ul>
+<div class="section" id="supervised-learning">
+<h2>Supervised Learning<a class="headerlink" href="#supervised-learning" title="Permalink to this headline">¶</a></h2>
+<p>In supervised learning, we are given a data set and already know what our correct output should look like, having the idea that there is a relationship between the input and the output.</p>
+<p>Supervised learning problems are categorized into “regression” and “classification” problems. In a regression problem, we are trying to predict results within a continuous output, meaning that we are trying to map input variables to some continuous function. In a classification problem, we are instead trying to predict results in a discrete output. In other words, we are trying to map input variables into discrete categories.</p>
+<p>Example 1:</p>
+<p>Given data about the size of houses on the real estate market, try to predict their price. Price as a function of size is a continuous output, so this is a regression problem.</p>
+<p>We could turn this example into a classification problem by instead making our output about whether the house “sells for more or less than the asking price.” Here we are classifying the houses based on price into two discrete categories.</p>
+<p>Example 2:</p>
+<p>(a) Regression - Given a picture of a person, we have to predict their age on the basis of the given picture</p>
+<p>(b) Classification - Given a patient with a tumor, we have to predict whether the tumor is malignant or benign.</p>
+</div>
+<div class="section" id="unsupervised-learning">
+<h2>Unsupervised Learning<a class="headerlink" href="#unsupervised-learning" title="Permalink to this headline">¶</a></h2>
+<p>Unsupervised learning allows us to approach problems with little or no idea what our results should look like. We can derive structure from data where we don’t necessarily know the effect of the variables.</p>
+<p>We can derive this structure by clustering the data based on relationships among the variables in the data.</p>
+<p>With unsupervised learning there is no feedback based on the prediction results.</p>
+<p>Example:</p>
+<p>Clustering: Take a collection of 1,000,000 different genes, and find a way to automatically group these genes into groups that are somehow similar or related by different variables, such as lifespan, location, roles, and so on.</p>
+<p>Non-clustering: The “Cocktail Party Algorithm”, allows you to find structure in a chaotic environment. (i.e. identifying individual voices and music from a mesh of sounds at a cocktail party - <a class="reference external" href="https://en.wikipedia.org/wiki/Cocktail_party_effect">Cocktail party effect</a>).</p>
+<p><img alt="Supervised_and_Unsupervised_Learning.png" src="_images/Supervised_and_Unsupervised_Learning.png" /></p>
+<div class="section" id="cost-function">
+<h3>Cost Function<a class="headerlink" href="#cost-function" title="Permalink to this headline">¶</a></h3>
+<p>We can measure the accuracy of our hypothesis function by using a cost function. This takes an average difference (actually a fancier version of an average) of all the results of the hypothesis with inputs from x’s and the actual output y’s.</p>
+<p><img alt="Cost_function.png" src="_images/Cost_function.png" /></p>
+</div>
+<div class="section" id="cost-function-intuition-1">
+<h3>Cost Function - Intuition 1<a class="headerlink" href="#cost-function-intuition-1" title="Permalink to this headline">¶</a></h3>
 <p>You can also create content with Jupyter Notebooks. This means that you can include
 code blocks and their outputs in your book.</p>
+</div>
+</div>
 <div class="section" id="markdown-notebooks">
 <h2>Markdown + notebooks<a class="headerlink" href="#markdown-notebooks" title="Permalink to this headline">¶</a></h2>
 <p>As it is markdown, you can embed images, HTML, etc into your posts!</p>
@@ -334,7 +430,7 @@ For example, here’s some sample Matplotlib code:</p>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="ne">C</span>:\Users\EMMA~1.ZHA\AppData\Local\Temp/ipykernel_1624/2191868119.py in &lt;module&gt;
+<span class="ne">C</span>:\Users\EMMA~1.ZHA\AppData\Local\Temp/ipykernel_39348/2191868119.py in &lt;module&gt;
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">rcParams</span><span class="p">,</span> <span class="n">cycler</span>
 <span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -399,19 +495,12 @@ with your book. For more information about this, see <a class="reference externa
             
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="DAX.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="API.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">DAX story</p>
+            <p class="prev-next-title">Basic functions</p>
         </div>
-    </a>
-    <a class='right-next' id="next-link" href="Data%20collection%20with%20Python.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Data collection with Python</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
     </a>
 </div>
             

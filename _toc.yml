@@ -3,7 +3,14 @@
 
 format: jb-book
 root: about
-chapters:
-- file: DAX
-- file: Machine Learning
-- file: Data collection with Python
+parts:
+  - caption: DAX
+    chapters:
+    - file: DAX
+  - caption: Data collection
+    chapters:
+    - file: Basic functions
+    - file: API
+  - caption: Machine Learning
+    chapters:
+    - file: Introduction

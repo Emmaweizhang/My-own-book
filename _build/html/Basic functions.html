@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Data collection with Python &#8212; Data science, health, design, statistics etc</title>
+    <title>Basic functions &#8212; Data science, health, design, statistics etc</title>
     
   <link href="_static/css/theme.css" rel="stylesheet">
   <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -52,7 +52,8 @@
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="Machine Learning" href="Machine%20Learning.html" />
+    <link rel="next" title="Basic functions" href="API.html" />
+    <link rel="prev" title="DAX story" href="DAX.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -96,20 +97,44 @@
   </a>
  </li>
 </ul>
-<ul class="current nav bd-sidenav">
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  DAX
+ </span>
+</p>
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="DAX.html">
    DAX story
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="Machine%20Learning.html">
-   Machine Learning
-  </a>
- </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Data collection
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Data collection with Python
+   Basic functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="API.html">
+   Basic functions
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Machine Learning
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Introduction.html">
+   Machine Learning
   </a>
  </li>
 </ul>
@@ -153,7 +178,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/Data collection with Python.ipynb"><button type="button"
+        <a class="dropdown-buttons" href="_sources/Basic functions.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
@@ -173,7 +198,7 @@
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FData collection with Python.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FBasic functions.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -194,7 +219,7 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/Data collection with Python.ipynb"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/Basic functions.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="_static/images/logo_binder.svg"
@@ -298,7 +323,7 @@
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Data collection with Python</h1>
+                <h1>Basic functions</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -389,8 +414,8 @@
             
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="data-collection-with-python">
-<h1>Data collection with Python<a class="headerlink" href="#data-collection-with-python" title="Permalink to this headline">¶</a></h1>
+  <div class="tex2jax_ignore mathjax_ignore section" id="basic-functions">
+<h1>Basic functions<a class="headerlink" href="#basic-functions" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="nested-data">
 <h2>Nested Data<a class="headerlink" href="#nested-data" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
@@ -611,9 +636,7 @@ True
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[&#39;dogs&#39;, &#39;puppies&#39;], [&#39;cats&#39;, &#39;kittens&#39;]]
 [[&#39;dogs&#39;, &#39;puppies&#39;, [&#39;canines&#39;]], [&#39;cats&#39;, &#39;kittens&#39;]]
 -------- Now look at the copied version -----------
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[&#39;dogs&#39;, &#39;puppies&#39;], [&#39;cats&#39;, &#39;kittens&#39;]]
+[[&#39;dogs&#39;, &#39;puppies&#39;], [&#39;cats&#39;, &#39;kittens&#39;]]
 </pre></div>
 </div>
 </div>
@@ -1466,7 +1489,7 @@ for photo in photos:
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">StdinNotImplementedError</span><span class="g g-Whitespace">                  </span>Traceback (most recent call last)
-<span class="ne">C</span>:\Users\EMMA~1.ZHA\AppData\Local\Temp/ipykernel_18240/1008616464.py in &lt;module&gt;
+<span class="ne">C</span>:\Users\EMMA~1.ZHA\AppData\Local\Temp/ipykernel_5664/1008616464.py in &lt;module&gt;
 <span class="g g-Whitespace">     </span><span class="mi">15</span> 
 <span class="g g-Whitespace">     </span><span class="mi">16</span> <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
 <span class="ne">---&gt; </span><span class="mi">17</span>     <span class="n">address</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;Enter location: &#39;</span><span class="p">)</span>
@@ -1514,12 +1537,19 @@ for photo in photos:
             
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="Machine%20Learning.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="DAX.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Machine Learning</p>
+            <p class="prev-next-title">DAX story</p>
         </div>
+    </a>
+    <a class='right-next' id="next-link" href="API.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Basic functions</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
     </a>
 </div>
             
