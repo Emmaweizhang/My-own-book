@@ -1,8 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Basic functions
-
 # ## Requesting Data from the Internet
 
 # The Internet is a transport mechanism that lets any connected device communicate with any other connected device. Behind the scenes:
