@@ -1,0 +1,988 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Requesting Data from the Internet &#8212; Data science, health, design, statistics etc</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="author" title="About these documents" href="about.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Machine Learning" href="Introduction.html" />
+    <link rel="prev" title="Basic functions" href="Basic%20functions.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/profile photo.jfif" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Data science, health, design, statistics etc</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="about.html">
+   About
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  DAX
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="DAX.html">
+   DAX story
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Data collection
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Basic%20functions.html">
+   Basic functions
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Requesting Data from the Internet
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Machine Learning
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Introduction.html">
+   Machine Learning
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/API.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FAPI.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/API.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-http-protocol">
+   The HTTP protocol
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#using-rest-apis">
+   Using REST APIs
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fetching-in-python-with-requests-get">
+   Fetching in python with requests.get
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#how-to-use-a-rest-api">
+   How to use a REST API
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#caching-response-content">
+   Caching Response Content
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#google-places-api">
+   Google Places API
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Requesting Data from the Internet</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-http-protocol">
+   The HTTP protocol
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#using-rest-apis">
+   Using REST APIs
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fetching-in-python-with-requests-get">
+   Fetching in python with requests.get
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#how-to-use-a-rest-api">
+   How to use a REST API
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#caching-response-content">
+   Caching Response Content
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#google-places-api">
+   Google Places API
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="section" id="requesting-data-from-the-internet">
+<h1>Requesting Data from the Internet<a class="headerlink" href="#requesting-data-from-the-internet" title="Permalink to this headline">¶</a></h1>
+<p>The Internet is a transport mechanism that lets any connected device communicate with any other connected device. Behind the scenes:</p>
+<p>Each device has a globally distinct IP address, which is a 32 bit number. Usually an IP address is represented as a sequence of four decimal numbers, each number in the range (0, 255). For example, when I checked the IP address for my laptop just now, it was 141.211.203.248. Any IP address beginning with 141.211 is for a device at the University of Michigan. When I take my laptop home and connect to a network there, my laptop gets a different IP address that it uses there.</p>
+<p>Data is chopped up into reasonable sized packets (up to 65,535 bytes, but usually much smaller).</p>
+<p>Each data packet has a header that includes the destination IP address.</p>
+<p>Each packet is routed independently, getting passed on from one computing device to another until it reaches its destination. The computing devices that do that packet forwarding are called routers. Each router keeps an address table that says, when it gets a packet for some destination address, which of its neighbors should it pass the packet on to. The routers are constantly talking to each other passing information about how they should update their routing tables. The system was designed to be resistant to any local damage. If some of the routers stop working, the rest of the routers talk to each other and start routing packets around in a different way so that packets still reach their intended destination if there is some path to get there. It is this technical capability that has spawned metaphoric quotes like this one from John Gilmore: “The Net interprets censorship as damage and routes around it.”</p>
+<p>At the destination, the packets are reassembled into the original data message.</p>
+<p><img alt="1.png" src="_images/1.png" /></p>
+<p>Anatomy of URLs:
+&lt;scheme&gt;://&lt;host&gt;:&lt;port&gt;/&lt;path&gt;</p>
+<p><img alt="3.png" src="_images/3.png" /></p>
+<div class="section" id="the-http-protocol">
+<h2>The HTTP protocol<a class="headerlink" href="#the-http-protocol" title="Permalink to this headline">¶</a></h2>
+<p>A protocol specifies the order in which parties will speak and the format of what they say and the content of appropriate responses.</p>
+<p>HTTP is the protocol that specifies how web browsers or other programs communicate with web servers. One version of the formal specification, before it was later split into multiple documents, was IETF RFC 2616. It is 176 pages long! Fortunately, the basics are pretty easy to understand.</p>
+<p>Step 1: the client makes a request to the server.
+If the request only involves fetching data, the client sends a message of the form GET <path>, where <path> is the path part of the URL</p>
+<p>If the request involves sending some data (e.g., a file upload, or some authentication information), the message starts with POST</p>
+<p>In either case, the client sends some HTTP headers. These include:
+The type of client program. This allows the server to send back different things to small mobile devices than desktop browsers (a “responsive” website)</p>
+<p>Any cookies that the server previously asked the client to hold onto. This allows the server to continue previous interactions, rather than treating every request as stand-alone. It also allows ad networks to place personalized ads.</p>
+<p>After the HTTP headers, for a POST type communication, there is some data (the body of the request).</p>
+<p>Step 2: the server responds to the client.
+The server first sends back some HTTP headers. These include:
+a response code indicating whether the server thinks it has fulfilled the request or not.</p>
+<p>a description of the type of content it is sending back (e.g., text/html when it is sending html-formatted text).</p>
+<p>any cookies it would like the client to hold onto and send back the next time it communicates with the server.</p>
+<p>After the headers come the contents. This is the stuff that you would see if you ask to “View Source” in a browser.</p>
+</div>
+<div class="section" id="using-rest-apis">
+<h2>Using REST APIs<a class="headerlink" href="#using-rest-apis" title="Permalink to this headline">¶</a></h2>
+<p>REST stands for REpresentational State Transfer. It originally had a more abstract meaning, but has come to be a shorthand name for web sites that act a bit like python functions, taking as inputs values for certain parameters and producing outputs in the form of a long text string.</p>
+<p>API stands for Application Programming Interface. An API specifies how an external program (an application program) can request that a program perform certain computations.</p>
+<p>Putting the two together, a REST API specifies how external programs can make HTTP requests to a web site in order to request that some computation be carried out and data returned as output. When a website is designed to accept requests generated by other computer programs, and produce outputs to be consumed by other programs, it is sometimes called a web service, as opposed to a web site which produces output meant for humans to consume in a web browser.</p>
+<p>In this format, the URL has a standard structure:</p>
+<ul class="simple">
+<li><p>the base URL</p></li>
+<li><p>a ? character</p></li>
+<li><p>one or more key-value pairs, formatted as key=value pairs and separated by the &amp; character.</p></li>
+</ul>
+<p><img alt="2" src="_images/2.png" /></p>
+</div>
+<div class="section" id="fetching-in-python-with-requests-get">
+<h2>Fetching in python with requests.get<a class="headerlink" href="#fetching-in-python-with-requests-get" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">json</span>
+
+<span class="n">page</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;https://api.datamuse.com/words?rel_rhy=funny&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">page</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">page</span><span class="o">.</span><span class="n">text</span><span class="p">[:</span><span class="mi">150</span><span class="p">])</span> <span class="c1"># print the first 150 characters</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">page</span><span class="o">.</span><span class="n">url</span><span class="p">)</span> <span class="c1"># print the url that was fetched</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;------&quot;</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">page</span><span class="o">.</span><span class="n">json</span><span class="p">()</span> <span class="c1"># turn page.text into a python object</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;---first item in the list---&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;---the whole list, pretty printed---&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span> <span class="c1"># pretty print the results</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;requests.models.Response&#39;&gt;
+[{&quot;word&quot;:&quot;money&quot;,&quot;score&quot;:4415,&quot;numSyllables&quot;:2},{&quot;word&quot;:&quot;honey&quot;,&quot;score&quot;:1206,&quot;numSyllables&quot;:2},{&quot;word&quot;:&quot;sunny&quot;,&quot;score&quot;:717,&quot;numSyllables&quot;:2},{&quot;word&quot;:&quot;
+https://api.datamuse.com/words?rel_rhy=funny
+------
+&lt;class &#39;list&#39;&gt;
+---first item in the list---
+{&#39;word&#39;: &#39;money&#39;, &#39;score&#39;: 4415, &#39;numSyllables&#39;: 2}
+---the whole list, pretty printed---
+[
+  {
+    &quot;word&quot;: &quot;money&quot;,
+    &quot;score&quot;: 4415,
+    &quot;numSyllables&quot;: 2
+  },
+  {
+    &quot;word&quot;: &quot;honey&quot;,
+    &quot;score&quot;: 1206,
+    &quot;numSyllables&quot;: 2
+  },
+  {
+    &quot;word&quot;: &quot;sunny&quot;,
+    &quot;score&quot;: 717,
+    &quot;numSyllables&quot;: 2
+  },
+  {
+    &quot;word&quot;: &quot;bunny&quot;,
+    &quot;score&quot;: 702,
+    &quot;numSyllables&quot;: 2
+  },
+  {
+    &quot;word&quot;: &quot;blini&quot;,
+    &quot;score&quot;: 613,
+    &quot;numSyllables&quot;: 2
+  },
+  {
+    &quot;word&quot;: &quot;gunny&quot;,
+    &quot;score&quot;: 449,
+    &quot;numSyllables&quot;: 2
+  },
+  {
+    &quot;word&quot;: &quot;tunny&quot;,
+    &quot;score&quot;: 301,
+    &quot;numSyllables&quot;: 2
+  },
+  {
+    &quot;word&quot;: &quot;sonny&quot;,
+    &quot;score&quot;: 286,
+    &quot;numSyllables&quot;: 2
+  },
+  {
+    &quot;word&quot;: &quot;dunny&quot;,
+    &quot;score&quot;: 245,
+    &quot;numSyllables&quot;: 2
+  },
+  {
+    &quot;word&quot;: &quot;runny&quot;,
+    &quot;score&quot;: 225,
+    &quot;numSyllables&quot;: 2
+  },
+  {
+    &quot;word&quot;: &quot;thunny&quot;,
+    &quot;score&quot;: 222,
+    &quot;numSyllables&quot;: 2
+  },
+  {
+    &quot;word&quot;: &quot;aknee&quot;,
+    &quot;score&quot;: 179,
+    &quot;numSyllables&quot;: 2
+  },
+  {
+    &quot;word&quot;: &quot;squinny&quot;,
+    &quot;score&quot;: 170,
+    &quot;numSyllables&quot;: 2
+  },
+  {
+    &quot;word&quot;: &quot;fiat money&quot;,
+    &quot;score&quot;: 160,
+    &quot;numSyllables&quot;: 4
+  },
+  {
+    &quot;word&quot;: &quot;gunnie&quot;,
+    &quot;score&quot;: 156,
+    &quot;numSyllables&quot;: 2
+  },
+  {
+    &quot;word&quot;: &quot;blood money&quot;,
+    &quot;score&quot;: 152,
+    &quot;numSyllables&quot;: 3
+  },
+  {
+    &quot;word&quot;: &quot;squiny&quot;,
+    &quot;score&quot;: 151,
+    &quot;numSyllables&quot;: 2
+  },
+  {
+    &quot;word&quot;: &quot;tunney&quot;,
+    &quot;score&quot;: 119,
+    &quot;numSyllables&quot;: 2
+  },
+  {
+    &quot;word&quot;: &quot;spinny&quot;,
+    &quot;score&quot;: 117,
+    &quot;numSyllables&quot;: 2
+  },
+  {
+    &quot;word&quot;: &quot;pin money&quot;,
+    &quot;score&quot;: 107,
+    &quot;numSyllables&quot;: 3
+  },
+  {
+    &quot;word&quot;: &quot;easy money&quot;,
+    &quot;score&quot;: 66,
+    &quot;numSyllables&quot;: 4
+  },
+  {
+    &quot;word&quot;: &quot;smart money&quot;,
+    &quot;score&quot;: 66,
+    &quot;numSyllables&quot;: 3
+  },
+  {
+    &quot;word&quot;: &quot;earnest money&quot;,
+    &quot;score&quot;: 62,
+    &quot;numSyllables&quot;: 4
+  },
+  {
+    &quot;word&quot;: &quot;easter bunny&quot;,
+    &quot;score&quot;: 56,
+    &quot;numSyllables&quot;: 4
+  },
+  {
+    &quot;word&quot;: &quot;paper money&quot;,
+    &quot;score&quot;: 54,
+    &quot;numSyllables&quot;: 4
+  },
+  {
+    &quot;word&quot;: &quot;pocket money&quot;,
+    &quot;score&quot;: 47,
+    &quot;numSyllables&quot;: 4
+  },
+  {
+    &quot;word&quot;: &quot;folding money&quot;,
+    &quot;score&quot;: 46,
+    &quot;numSyllables&quot;: 4
+  },
+  {
+    &quot;word&quot;: &quot;conscience money&quot;,
+    &quot;score&quot;: 41,
+    &quot;numSyllables&quot;: 4
+  },
+  {
+    &quot;word&quot;: &quot;hush money&quot;,
+    &quot;score&quot;: 40,
+    &quot;numSyllables&quot;: 3
+  },
+  {
+    &quot;word&quot;: &quot;prize money&quot;,
+    &quot;score&quot;: 37,
+    &quot;numSyllables&quot;: 3
+  },
+  {
+    &quot;word&quot;: &quot;amount of money&quot;,
+    &quot;score&quot;: 33,
+    &quot;numSyllables&quot;: 5
+  },
+  {
+    &quot;word&quot;: &quot;for love or money&quot;,
+    &quot;score&quot;: 32,
+    &quot;numSyllables&quot;: 5
+  },
+  {
+    &quot;word&quot;: &quot;tight money&quot;,
+    &quot;score&quot;: 32,
+    &quot;numSyllables&quot;: 3
+  },
+  {
+    &quot;word&quot;: &quot;ship money&quot;,
+    &quot;score&quot;: 30,
+    &quot;numSyllables&quot;: 3
+  },
+  {
+    &quot;word&quot;: &quot;metal money&quot;,
+    &quot;score&quot;: 27,
+    &quot;numSyllables&quot;: 4
+  },
+  {
+    &quot;word&quot;: &quot;sum of money&quot;,
+    &quot;score&quot;: 23,
+    &quot;numSyllables&quot;: 4
+  },
+  {
+    &quot;word&quot;: &quot;entrance money&quot;,
+    &quot;score&quot;: 22,
+    &quot;numSyllables&quot;: 4
+  },
+  {
+    &quot;word&quot;: &quot;cheap money&quot;,
+    &quot;score&quot;: 21,
+    &quot;numSyllables&quot;: 3
+  },
+  {
+    &quot;word&quot;: &quot;spending money&quot;,
+    &quot;score&quot;: 21,
+    &quot;numSyllables&quot;: 4
+  },
+  {
+    &quot;word&quot;: &quot;token money&quot;,
+    &quot;score&quot;: 21,
+    &quot;numSyllables&quot;: 4
+  },
+  {
+    &quot;word&quot;: &quot;waste of money&quot;,
+    &quot;score&quot;: 19,
+    &quot;numSyllables&quot;: 4
+  },
+  {
+    &quot;word&quot;: &quot;ransom money&quot;,
+    &quot;score&quot;: 18,
+    &quot;numSyllables&quot;: 4
+  },
+  {
+    &quot;word&quot;: &quot;hearth money&quot;,
+    &quot;score&quot;: 14,
+    &quot;numSyllables&quot;: 3
+  },
+  {
+    &quot;word&quot;: &quot;munni&quot;,
+    &quot;score&quot;: 14,
+    &quot;numSyllables&quot;: 2
+  },
+  {
+    &quot;word&quot;: &quot;bunnie&quot;,
+    &quot;score&quot;: 2,
+    &quot;numSyllables&quot;: 2
+  },
+  {
+    &quot;word&quot;: &quot;euromoney&quot;,
+    &quot;score&quot;: 2,
+    &quot;numSyllables&quot;: 4
+  },
+  {
+    &quot;word&quot;: &quot;smartmoney&quot;,
+    &quot;score&quot;: 2,
+    &quot;numSyllables&quot;: 3
+  }
+]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;q&#39;</span><span class="p">:</span> <span class="s1">&#39;&quot;violins and guitars&quot;&#39;</span><span class="p">,</span> <span class="s1">&#39;tbm&#39;</span><span class="p">:</span> <span class="s1">&#39;isch&#39;</span><span class="p">}</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;https://google.com/search&quot;</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">d</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">url</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>https://www.google.com/search?q=%22violins+and+guitars%22&amp;tbm=isch
+</pre></div>
+</div>
+</div>
+</div>
+<p><img alt="4.png" src="_images/4.png" /></p>
+</div>
+<div class="section" id="how-to-use-a-rest-api">
+<h2>How to use a REST API<a class="headerlink" href="#how-to-use-a-rest-api" title="Permalink to this headline">¶</a></h2>
+<p>Suppose you have learned about the existence of an API, and want to figure out how to use it. There are five questions that you’ll need to answer.</p>
+<ol class="simple">
+<li><p>What is the baseurl?</p></li>
+<li><p>What keys should you provide in the dictionary you pass for the params parameter?</p></li>
+<li><p>What values should you provide associated with those keys?</p></li>
+<li><p>Do you need to authenticate yourself as a licensed user of the API and, if so, how?</p></li>
+<li><p>What is the structure and meaning of the data that will be provided?</p></li>
+</ol>
+<p>The answers to these questions always depend on design choices made by the service provider who is running the server. Thus, the official documentation they provide will usually be the most helpful. It may also be helpful to find example code snippets or full URLs and responses; if you don’t find that in the documentation, you may want to search for it on Google or StackOverflow.</p>
+</div>
+<div class="section" id="caching-response-content">
+<h2>Caching Response Content<a class="headerlink" href="#caching-response-content" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">json</span>
+
+<span class="n">PERMANENT_CACHE_FNAME</span> <span class="o">=</span> <span class="s2">&quot;permanent_cache.txt&quot;</span>
+<span class="n">TEMP_CACHE_FNAME</span> <span class="o">=</span> <span class="s2">&quot;this_page_cache.txt&quot;</span>
+
+<span class="k">def</span> <span class="nf">_write_to_file</span><span class="p">(</span><span class="n">cache</span><span class="p">,</span> <span class="n">fname</span><span class="p">):</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">outfile</span><span class="p">:</span>
+        <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">cache</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">_read_from_file</span><span class="p">(</span><span class="n">fname</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">infile</span><span class="p">:</span>
+            <span class="n">res</span> <span class="o">=</span> <span class="n">infile</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+            <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">{}</span>
+
+<span class="k">def</span> <span class="nf">add_to_cache</span><span class="p">(</span><span class="n">cache_file</span><span class="p">,</span> <span class="n">cache_key</span><span class="p">,</span> <span class="n">cache_value</span><span class="p">):</span>
+    <span class="n">temp_cache</span> <span class="o">=</span> <span class="n">_read_from_file</span><span class="p">(</span><span class="n">cache_file</span><span class="p">)</span>
+    <span class="n">temp_cache</span><span class="p">[</span><span class="n">cache_key</span><span class="p">]</span> <span class="o">=</span> <span class="n">cache_value</span>
+    <span class="n">_write_to_file</span><span class="p">(</span><span class="n">temp_cache</span><span class="p">,</span> <span class="n">cache_file</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">clear_cache</span><span class="p">(</span><span class="n">cache_file</span><span class="o">=</span><span class="n">TEMP_CACHE_FNAME</span><span class="p">):</span>
+    <span class="n">_write_to_file</span><span class="p">({},</span> <span class="n">cache_file</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">make_cache_key</span><span class="p">(</span><span class="n">baseurl</span><span class="p">,</span> <span class="n">params_d</span><span class="p">,</span> <span class="n">private_keys</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;api_key&quot;</span><span class="p">]):</span>
+    <span class="sd">&quot;&quot;&quot;Makes a long string representing the query.</span>
+<span class="sd">    Alphabetize the keys from the params dictionary so we get the same order each time.</span>
+<span class="sd">    Omit keys with private info.&quot;&quot;&quot;</span>
+    <span class="n">alphabetized_keys</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">params_d</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">alphabetized_keys</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">k</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">private_keys</span><span class="p">:</span>
+            <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2">-</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">params_d</span><span class="p">[</span><span class="n">k</span><span class="p">]))</span>
+    <span class="k">return</span> <span class="n">baseurl</span> <span class="o">+</span> <span class="s2">&quot;_&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="n">baseurl</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{},</span> <span class="n">private_keys_to_ignore</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;api_key&quot;</span><span class="p">],</span> <span class="n">permanent_cache_file</span><span class="o">=</span><span class="n">PERMANENT_CACHE_FNAME</span><span class="p">,</span> <span class="n">temp_cache_file</span><span class="o">=</span><span class="n">TEMP_CACHE_FNAME</span><span class="p">):</span>
+    <span class="n">full_url</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">requestURL</span><span class="p">(</span><span class="n">baseurl</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span>
+    <span class="n">cache_key</span> <span class="o">=</span> <span class="n">make_cache_key</span><span class="p">(</span><span class="n">baseurl</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">private_keys_to_ignore</span><span class="p">)</span>
+    <span class="c1"># Load the permanent and page-specific caches from files</span>
+    <span class="n">permanent_cache</span> <span class="o">=</span> <span class="n">_read_from_file</span><span class="p">(</span><span class="n">permanent_cache_file</span><span class="p">)</span>
+    <span class="n">temp_cache</span> <span class="o">=</span> <span class="n">_read_from_file</span><span class="p">(</span><span class="n">temp_cache_file</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">cache_key</span> <span class="ow">in</span> <span class="n">temp_cache</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;found in temp_cache&quot;</span><span class="p">)</span>
+        <span class="c1"># make a Response object containing text from the change, and the full_url that would have been fetched</span>
+        <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">Response</span><span class="p">(</span><span class="n">temp_cache</span><span class="p">[</span><span class="n">cache_key</span><span class="p">],</span> <span class="n">full_url</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">cache_key</span> <span class="ow">in</span> <span class="n">permanent_cache</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;found in permanent_cache&quot;</span><span class="p">)</span>
+        <span class="c1"># make a Response object containing text from the change, and the full_url that would have been fetched</span>
+        <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">Response</span><span class="p">(</span><span class="n">permanent_cache</span><span class="p">[</span><span class="n">cache_key</span><span class="p">],</span> <span class="n">full_url</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;new; adding to cache&quot;</span><span class="p">)</span>
+        <span class="c1"># actually request it</span>
+        <span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">baseurl</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span>
+        <span class="c1"># save it</span>
+        <span class="n">add_to_cache</span><span class="p">(</span><span class="n">temp_cache_file</span><span class="p">,</span> <span class="n">cache_key</span><span class="p">,</span> <span class="n">resp</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">resp</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_no-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">script</span> false --no-raise-error
+#Above can be turned into a package to use.
+import request_with_caching
+# it&#39;s not found in the permanent cache
+res = requests_with_caching.get(&quot;https://api.datamuse.com/words?rel_rhy=happy&quot;, permanent_cache_file=&quot;datamuse_cache.txt&quot;)
+print(res.text[:100])
+# this time it will be found in the temporary cache
+res = requests_with_caching.get(&quot;https://api.datamuse.com/words?rel_rhy=happy&quot;, permanent_cache_file=&quot;datamuse_cache.txt&quot;)
+# This one is in the permanent cache.
+res = requests_with_caching.get(&quot;https://api.datamuse.com/words?rel_rhy=funny&quot;, permanent_cache_file=&quot;datamuse_cache.txt&quot;)
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Couldn&#39;t find program: &#39;false&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_no-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">script</span> false
+import requests_with_caching
+import json
+
+parameters = {&quot;term&quot;: &quot;Ann Arbor&quot;, &quot;entity&quot;: &quot;podcast&quot;}
+iTunes_response = requests_with_caching.get(&quot;https://itunes.apple.com/search&quot;, params = parameters, permanent_cache_file=&quot;itunes_cache.txt&quot;)
+
+py_data = json.loads(iTunes_response.text)
+for r in py_data[&#39;results&#39;]:
+    print(r[&#39;trackName&#39;])
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Couldn&#39;t find program: &#39;false&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">script</span> false
+# import statements
+import requests_with_caching
+import json
+# import webbrowser
+
+# apply for a flickr authentication key at http://www.flickr.com/services/apps/create/apply/?
+# paste the key (not the secret) as the value of the variable flickr_key
+flickr_key = &#39;yourkeyhere&#39;
+
+def get_flickr_data(tags_string):
+    baseurl = &quot;https://api.flickr.com/services/rest/&quot;
+    params_diction = {}
+    params_diction[&quot;api_key&quot;] = flickr_key # from the above global variable
+    params_diction[&quot;tags&quot;] = tags_string # must be a comma separated string to work correctly
+    params_diction[&quot;tag_mode&quot;] = &quot;all&quot;
+    params_diction[&quot;method&quot;] = &quot;flickr.photos.search&quot;
+    params_diction[&quot;per_page&quot;] = 5
+    params_diction[&quot;media&quot;] = &quot;photos&quot;
+    params_diction[&quot;format&quot;] = &quot;json&quot;
+    params_diction[&quot;nojsoncallback&quot;] = 1
+    flickr_resp = requests_with_caching.get(baseurl, params = params_diction, permanent_cache_file=&quot;flickr_cache.txt&quot;)
+    # Useful for debugging: print the url! Uncomment the below line to do so.
+    print(flickr_resp.url) # Paste the result into the browser to check it out...
+    return flickr_resp.json()
+
+result_river_mts = get_flickr_data(&quot;river,mountains&quot;)
+
+# Some code to open up a few photos that are tagged with the mountains and river tags...
+
+photos = result_river_mts[&#39;photos&#39;][&#39;photo&#39;]
+for photo in photos:
+    owner = photo[&#39;owner&#39;]
+    photo_id = photo[&#39;id&#39;]
+    url = &#39;https://www.flickr.com/photos/{}/{}&#39;.format(owner, photo_id)
+    print(url)
+    # webbrowser.open(url)
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Couldn&#39;t find program: &#39;false&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Sometimes, you may need to deal with text that includes characters that are not part of the standard English alphabet, such as é, ö, Ф, or ¥. This is especially likely if you use REST APIs to fetch user-contributed content from social media sites like Twitter, Facebook, or flickr.</p>
+<p>Python’s strings are in unicode, which allows for characters to be from a much larger alphabet, including more than 75,000 ideographic characters used in Chinese, Japanese, and Korean alphabets. Everything works fine inside Python, for operations like slicing and appending and concatenating strings and using .find() or the in operator.</p>
+<p>Things only get tricky when you want to input strings into Python, or print them to an output window or write them to a file.</p>
+<p>For output, your terminal (output) window will typically be set up to display characters only from a restricted set of languages (perhaps just English). If you issue a print statement on a string containing other characters, it may not display correctly in your terminal window. Indeed, you may get an error message. We will offer a workaround later on this page.</p>
+<p>If you want to store unicode text in a file, you have to choose an “encoding”. This is analogous to the encoding of special characters in a URL string, but not the same. In a file, each unicode character has to be encoded as one or more “bytes” for storage in a file. We have avoided low-level details about data encodings until now, but understanding a little about bits and bytes will help make sense of this.</p>
+<p>A bit is a BInary digiT. It is a single value restricted to two (binary) possibilities, which we conventionally write as 0 or 1. Computers store bits as electrical charges (high or low voltage) or as magnetic polarities, or some other way that we need not be concerned about. A sequence of eight 0-1 bits is called a byte. For example: 01001000.</p>
+<p>There are 2^^8=256 distinct eight-bit bytes. If we only had 256 possible letters in our alphabet, we could simply encode each letter as one of the available bytes. When we restrict ourselves to regular python strings, using only the ASCII alphabet (English, plus a few special characters), the encoding is that simple, so simple that we haven’t had to think about it before.</p>
+<p>When there are 75,000 possible characters, they can’t all be encoded with a single byte, because there are only 256 distinct bytes (eight-bit sequences). There are many possible encodings. The one you will be most likely to encounter, using REST APIs, is called UTF-8. A single unicode character is mapped to a sequence of up to four bytes.</p>
+<p>If you read in a UTF-8 encoded text, and get the contents using .read() or .readlines(), you will need to “decode” the contents in order to turn it into a proper unicode string that you can read and use.</p>
+<p>Fortunately, the requests module will normally handle this for us automatically. When we fetch a webpage that is in json format, the webpage will have a header called ‘content-type’ that will say something like application/json; charset=utf8. If it specifies the utf8 character set in that way, the requests module will automatically decode the contents into unicode: requests.get(‘that web page’).text will yield a string, with each of those sequences of one to four bytes coverted into a single character.</p>
+<p>If, for some reason, you get json-formatted text that is utf-encoded but the requests module hasn’t magically decoded it for you, the json.loads() function call can take care of the decoding for you. loads() takes an optional parameter, encoding. Its default value is ‘utf-8’, so you don’t need to specify it unless you think the text you have received was in some other encoding than ‘utf-8’.</p>
+<p>Note</p>
+<p>You may see a u before the string in a Python 2.7 program indicating that it’s a unicode string. In Python 3, all strings are unicode strings, so you shouldn’t encounter any of those strange u characters in this textbook.</p>
+<p>Once you have python strings, everything will work fine until you try to print or write the contents to a file. If you print, and your terminal window is not set up to display that language, you may get a strange output, or an error message.</p>
+<p>If you try to write to a file with unicode strings, you may get an error. When you write a unicode string to a file, Python tries to encode it in ASCII. If there is a non-ASCII character, the execution fails and raises an error that looks like this: UnicodeEncodeError: ‘ascii’ codec can’t encode character u’\xea’ in position 1: ordinal not in range(128).</p>
+<p>One solution is to use the Python method to encode the string, using a format such as utf-8. For example, s.encode(‘utf-8’) will encode string s as utf-8. That will encode non-ASCII characters with multiple character sequences that are difficult for people to read but can decoded back into single Unicode characters. This is often the best way.</p>
+<p>Another quick-and-dirty option, if you just have a few stray characters that are getting in your way, is to replace any non-ASCII characters with question marks. For example, s.encode(‘ascii’, ‘replace’). Of course, replacing characters with question marks destroys some of the information, but it may be helpful in some circumstances.</p>
+<p>Note</p>
+<p>In the Runestone online environment, the .encode() and .decode() methods are not available for strings. You can only use them in a full python environment. In all of the cached data that we provide from REST APIs in this online book, we have tried to avoid Unicode encoding issues.</p>
+</div>
+<div class="section" id="google-places-api">
+<h2>Google Places API<a class="headerlink" href="#google-places-api" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="c1"># You need to install the requests module to use this code</span>
+<span class="kn">import</span> <span class="nn">json</span>
+
+<span class="n">api_key</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="c1"># If you have a Google Places API key, enter it here</span>
+<span class="c1"># api_key = &#39;AIzaSy___IDByT70&#39;</span>
+<span class="c1"># https://developers.google.com/maps/documentation/geocoding/intro</span>
+
+<span class="k">if</span> <span class="n">api_key</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span>
+    <span class="n">api_key</span> <span class="o">=</span> <span class="mi">42</span>
+    <span class="n">serviceurl</span> <span class="o">=</span> <span class="s1">&#39;http://py4e-data.dr-chuck.net/json&#39;</span>
+<span class="k">else</span> <span class="p">:</span>
+    <span class="n">serviceurl</span> <span class="o">=</span> <span class="s1">&#39;https://maps.googleapis.com/maps/api/geocode/json&#39;</span>
+
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">address</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;Enter location: &#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">address</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span> <span class="k">break</span>
+
+    <span class="n">payload</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+    <span class="n">payload</span><span class="p">[</span><span class="s1">&#39;address&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">address</span>
+    <span class="k">if</span> <span class="n">api_key</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">False</span><span class="p">:</span> <span class="n">payload</span><span class="p">[</span><span class="s1">&#39;key&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">api_key</span>
+
+    <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">serviceurl</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Retrieved&#39;</span><span class="p">,</span> <span class="n">r</span><span class="o">.</span><span class="n">url</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">text</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Retrieved&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">),</span> <span class="s1">&#39;characters&#39;</span><span class="p">)</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">js</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="n">js</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">js</span> <span class="ow">or</span> <span class="s1">&#39;status&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">js</span> <span class="ow">or</span> <span class="n">js</span><span class="p">[</span><span class="s1">&#39;status&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;OK&#39;</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;==== Failure To Retrieve ====&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="k">continue</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">js</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
+
+    <span class="n">lat</span> <span class="o">=</span> <span class="n">js</span><span class="p">[</span><span class="s1">&#39;results&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;geometry&#39;</span><span class="p">][</span><span class="s1">&#39;location&#39;</span><span class="p">][</span><span class="s1">&#39;lat&#39;</span><span class="p">]</span>
+    <span class="n">lng</span> <span class="o">=</span> <span class="n">js</span><span class="p">[</span><span class="s1">&#39;results&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;geometry&#39;</span><span class="p">][</span><span class="s1">&#39;location&#39;</span><span class="p">][</span><span class="s1">&#39;lng&#39;</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;lat&#39;</span><span class="p">,</span> <span class="n">lat</span><span class="p">,</span> <span class="s1">&#39;lng&#39;</span><span class="p">,</span> <span class="n">lng</span><span class="p">)</span>
+    <span class="n">location</span> <span class="o">=</span> <span class="n">js</span><span class="p">[</span><span class="s1">&#39;results&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;formatted_address&#39;</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">location</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">StdinNotImplementedError</span><span class="g g-Whitespace">                  </span>Traceback (most recent call last)
+<span class="ne">C</span>:\Users\EMMA~1.ZHA\AppData\Local\Temp/ipykernel_16844/1008616464.py in &lt;module&gt;
+<span class="g g-Whitespace">     </span><span class="mi">15</span> 
+<span class="g g-Whitespace">     </span><span class="mi">16</span> <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+<span class="ne">---&gt; </span><span class="mi">17</span>     <span class="n">address</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;Enter location: &#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">18</span>     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">address</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span> <span class="k">break</span>
+<span class="g g-Whitespace">     </span><span class="mi">19</span> 
+
+<span class="nn">~\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\ipykernel\kernelbase.py</span> in <span class="ni">raw_input</span><span class="nt">(self, prompt)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1001</span>         <span class="s2">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">1002</span><span class="s2">         if not self._allow_stdin:</span>
+<span class="ne">-&gt; </span><span class="mi">1003</span><span class="s2">             raise StdinNotImplementedError(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1004</span><span class="s2">                 &quot;raw_input was called, but this frontend does not support input requests.&quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">1005</span><span class="s2">             )</span>
+
+<span class="ne">StdinNotImplementedError</span>: raw_input was called, but this frontend does not support input requests.
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="Basic%20functions.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Basic functions</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="Introduction.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Machine Learning</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By The Jupyter Book Community<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>
