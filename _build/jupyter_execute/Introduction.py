@@ -58,25 +58,35 @@
 
 # ![Cost_function.png](Images/Cost_function.png)
 
-# ### Cost Function - Intuition 1
+# #### Cost Function - Intuition 
 
-# In[ ]:
+# If we try to think of it in visual terms, our training data set is scattered on the x-y plane. We are trying to make a straight line (defined by $h_{\theta}$(x) which passes through these scattered data points. 
+# 
+# Our objective is to get the best possible line. The best possible line will be such so that the average squared vertical distances of the scattered points from the line will be the least. Ideally, the line should pass through all the points of our training data set. In such a case, the value of $J(\theta_0, \theta_1)$ will be 0. The following example shows the ideal situation where we have a cost function of 0. 
 
+# ![Cost_function_1.png](Images/Cost_function_1.png)
 
+# When $\theta_1$ = 1, we get a slope of 1 which goes through every single data point in our model. Conversely, when $\theta_1$ = 0.5, we see the vertical distance from our fit to the data points increase. 
 
+# ![Cost_function_2.png](Images/Cost_function_2.png)
 
+# This increases our cost function to 0.58. Plotting several other points yields to the following graph. Thus as a goal, we should try to minimize the cost function. In this case, $\theta_1$ = 1 is our global minimum. 
 
-# In[ ]:
+# ![Cost_function_3.png](Images/Cost_function_3.png)
 
+# A contour plot is a graph that contains many contour lines. A contour line of a two variable function has a constant value at all points of the same line. An example of such a graph is the one to the right below.
+# 
+# 
 
+# ![Cost_function_4.png](Images/Cost_function_4.png)
 
+# Taking any color and going along the 'circle', one would expect to get the same value of the cost function. For example, the three green points found on the green line above have the same value for $J(\theta_0,\theta_1)$, and as a result, they are found along the same line. The circled x displays the value of the cost function for the graph on the left when $\theta_0$ = 800 and $\theta_1$= -0.15. Taking another h(x) and plotting its contour plot, one gets the following graphs:
+# 
+# 
 
+# ![Cost_function_5.png](Images/Cost_function_5.png)
 
-# In[ ]:
-
-
-
-
+# ### Parameter Learning
 
 # In[ ]:
 

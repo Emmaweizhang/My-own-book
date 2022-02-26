@@ -256,10 +256,17 @@
     <a class="reference internal nav-link" href="#cost-function">
      Cost Function
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#cost-function-intuition">
+       Cost Function - Intuition
+      </a>
+     </li>
+    </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#cost-function-intuition-1">
-     Cost Function - Intuition 1
+    <a class="reference internal nav-link" href="#parameter-learning">
+     Parameter Learning
     </a>
    </li>
   </ul>
@@ -313,10 +320,17 @@
     <a class="reference internal nav-link" href="#cost-function">
      Cost Function
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#cost-function-intuition">
+       Cost Function - Intuition
+      </a>
+     </li>
+    </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#cost-function-intuition-1">
-     Cost Function - Intuition 1
+    <a class="reference internal nav-link" href="#parameter-learning">
+     Parameter Learning
     </a>
    </li>
   </ul>
@@ -382,9 +396,23 @@
 <h3>Cost Function<a class="headerlink" href="#cost-function" title="Permalink to this headline">¶</a></h3>
 <p>We can measure the accuracy of our hypothesis function by using a cost function. This takes an average difference (actually a fancier version of an average) of all the results of the hypothesis with inputs from x’s and the actual output y’s.</p>
 <p><img alt="Cost_function.png" src="_images/Cost_function.png" /></p>
+<div class="section" id="cost-function-intuition">
+<h4>Cost Function - Intuition<a class="headerlink" href="#cost-function-intuition" title="Permalink to this headline">¶</a></h4>
+<p>If we try to think of it in visual terms, our training data set is scattered on the x-y plane. We are trying to make a straight line (defined by <span class="math notranslate nohighlight">\(h_{\theta}\)</span>(x) which passes through these scattered data points.</p>
+<p>Our objective is to get the best possible line. The best possible line will be such so that the average squared vertical distances of the scattered points from the line will be the least. Ideally, the line should pass through all the points of our training data set. In such a case, the value of <span class="math notranslate nohighlight">\(J(\theta_0, \theta_1)\)</span> will be 0. The following example shows the ideal situation where we have a cost function of 0.</p>
+<p><img alt="Cost_function_1.png" src="_images/Cost_function_1.png" /></p>
+<p>When <span class="math notranslate nohighlight">\(\theta_1\)</span> = 1, we get a slope of 1 which goes through every single data point in our model. Conversely, when <span class="math notranslate nohighlight">\(\theta_1\)</span> = 0.5, we see the vertical distance from our fit to the data points increase.</p>
+<p><img alt="Cost_function_2.png" src="_images/Cost_function_2.png" /></p>
+<p>This increases our cost function to 0.58. Plotting several other points yields to the following graph. Thus as a goal, we should try to minimize the cost function. In this case, <span class="math notranslate nohighlight">\(\theta_1\)</span> = 1 is our global minimum.</p>
+<p><img alt="Cost_function_3.png" src="_images/Cost_function_3.png" /></p>
+<p>A contour plot is a graph that contains many contour lines. A contour line of a two variable function has a constant value at all points of the same line. An example of such a graph is the one to the right below.</p>
+<p><img alt="Cost_function_4.png" src="_images/Cost_function_4.png" /></p>
+<p>Taking any color and going along the ‘circle’, one would expect to get the same value of the cost function. For example, the three green points found on the green line above have the same value for <span class="math notranslate nohighlight">\(J(\theta_0,\theta_1)\)</span>, and as a result, they are found along the same line. The circled x displays the value of the cost function for the graph on the left when <span class="math notranslate nohighlight">\(\theta_0\)</span> = 800 and <span class="math notranslate nohighlight">\(\theta_1\)</span>= -0.15. Taking another h(x) and plotting its contour plot, one gets the following graphs:</p>
+<p><img alt="Cost_function_5.png" src="_images/Cost_function_5.png" /></p>
 </div>
-<div class="section" id="cost-function-intuition-1">
-<h3>Cost Function - Intuition 1<a class="headerlink" href="#cost-function-intuition-1" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="parameter-learning">
+<h3>Parameter Learning<a class="headerlink" href="#parameter-learning" title="Permalink to this headline">¶</a></h3>
 <p>You can also create content with Jupyter Notebooks. This means that you can include
 code blocks and their outputs in your book.</p>
 </div>
@@ -430,7 +458,7 @@ For example, here’s some sample Matplotlib code:</p>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="ne">C</span>:\Users\EMMA~1.ZHA\AppData\Local\Temp/ipykernel_3268/2191868119.py in &lt;module&gt;
+<span class="ne">C</span>:\Users\EMMA~1.ZHA\AppData\Local\Temp/ipykernel_35948/2191868119.py in &lt;module&gt;
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">rcParams</span><span class="p">,</span> <span class="n">cycler</span>
 <span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
