@@ -274,6 +274,11 @@
      Gradient descent algorithm
     </a>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#linear-algebra">
+     Linear Algebra
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -341,6 +346,11 @@
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#gradient-descent-algorithm">
      Gradient descent algorithm
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#linear-algebra">
+     Linear Algebra
     </a>
    </li>
   </ul>
@@ -431,13 +441,20 @@
 <p>The way we do this is by taking the derivative (the tangential line to a function) of our cost function. The slope of the tangent is the derivative at that point and it will give us a direction to move towards. We make steps down the cost function in the direction with the steepest descent. The size of each step is determined by the parameter α, which is called the learning rate.</p>
 <p>For example, the distance between each ‘star’ in the graph above represents a step determined by our parameter α. A smaller α would result in a smaller step and a larger α results in a larger step. The direction in which the step is taken is determined by the partial derivative of J(<span class="math notranslate nohighlight">\(\theta_0\)</span>,<span class="math notranslate nohighlight">\(\theta_1\)</span>). Depending on where one starts on the graph, one could end up at different points. The image above shows us two different starting points that end up in two different places.</p>
 <p>The gradient descent algorithm is:</p>
-<p>Repeat until convergence:
-<span class="math notranslate nohighlight">\(\theta_j\)</span> := <span class="math notranslate nohighlight">\(\theta_j\)</span> - α*α/</p>
+<p>Repeat until convergence:</p>
 <p>where j =0, 1. At each iteration j, one should simultaneously update the parameters <span class="math notranslate nohighlight">\(\theta_1\)</span>,<span class="math notranslate nohighlight">\(\theta_2\)</span>, …, <span class="math notranslate nohighlight">\(\theta_n\)</span>. Updating a specific parameter prior to calculating another one on the jth iteration would yield to a wrong implementation.</p>
 <p><img alt="Gradient_Descent_2.png" src="_images/Gradient_Descent_2.png" /></p>
 </div>
 <div class="section" id="gradient-descent-algorithm">
 <h3>Gradient descent algorithm<a class="headerlink" href="#gradient-descent-algorithm" title="Permalink to this headline">¶</a></h3>
+<p>The formula for a single parameter is</p>
+<p><img alt="Gradient_Descent_formula.png" src="_images/Gradient_Descent_formula.png" /></p>
+<p><img alt="Gradient_descent2.png" src="_images/Gradient_descent2.png" /></p>
+<p><img alt="Gradient_descent3.png" src="_images/Gradient_descent3.png" /></p>
+<p><img alt="Gradient_descent4.png" src="_images/Gradient_descent4.png" /></p>
+</div>
+<div class="section" id="linear-algebra">
+<h3>Linear Algebra<a class="headerlink" href="#linear-algebra" title="Permalink to this headline">¶</a></h3>
 <p>You can also create content with Jupyter Notebooks. This means that you can include
 code blocks and their outputs in your book.</p>
 </div>
@@ -483,7 +500,7 @@ For example, here’s some sample Matplotlib code:</p>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="ne">C</span>:\Users\EMMA~1.ZHA\AppData\Local\Temp/ipykernel_34580/2191868119.py in &lt;module&gt;
+<span class="ne">C</span>:\Users\EMMA~1.ZHA\AppData\Local\Temp/ipykernel_15976/2191868119.py in &lt;module&gt;
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">rcParams</span><span class="p">,</span> <span class="n">cycler</span>
 <span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -562,7 +579,7 @@ with your book. For more information about this, see <a class="reference externa
     <footer class="footer">
   <p>
     
-      By The Jupyter Book Community<br/>
+      By Emma Zhang<br/>
     
         &copy; Copyright 2021.<br/>
   </p>

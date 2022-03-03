@@ -104,37 +104,23 @@
 # The gradient descent algorithm is:
 # 
 # Repeat until convergence:
-# $\theta_j$ := $\theta_j$ - α*α/
 # 
 # where j =0, 1. At each iteration j, one should simultaneously update the parameters $\theta_1$,$\theta_2$, ..., $\theta_n$. Updating a specific parameter prior to calculating another one on the jth iteration would yield to a wrong implementation.
 
 # ![Gradient_Descent_2.png](Images/Gradient_Descent_2.png)
 
 # ### Gradient descent algorithm
+# The formula for a single parameter is
+# 
+# ![Gradient_Descent_formula.png](Images/Gradient_Descent_formula.png)
 
-# In[ ]:
+# ![Gradient_descent2.png](Images/Gradient_descent2.png)
 
+# ![Gradient_descent3.png](Images/Gradient_descent3.png)
 
+# ![Gradient_descent4.png](Images/Gradient_descent4.png)
 
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
+# ### Linear Algebra
 
 # In[ ]:
 
