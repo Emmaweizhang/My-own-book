@@ -122,6 +122,43 @@
 
 # ### Linear Algebra
 
+# ### Gradient Descent for Multiple Variables
+
+# ![multivariate_linear_regression_gradient_descent.png](Images/multivariate_linear_regression_gradient_descent.png)
+
+# ### Feature scaling
+
+# We can speed up gradient descent by having each of our input values in roughly the same range. This is because θ will descend quickly on small ranges and slowly on large ranges, and so will oscillate inefficiently down to the optimum when the variables are very uneven.
+# 
+# Two techniques to help with this are feature scaling and mean normalization. **Feature scaling** involves dividing the input values by the range (i.e. the maximum value minus the minimum value) of the input variable, resulting in a new range of just 1. **Mean normalization** involves subtracting the average value for an input variable from the values for that input variable resulting in a new average value for the input variable of just zero. 
+
+# ### Gradient Descent - learning rate
+# If $\alpha$ is too small: slow convergence. 
+# 
+#  If $\alpha$ is too large: cost function may not decrease on every iteration and thus may not converge.
+
+# ![learning_rate_change.png](Images/learning_rate_change.png)
+
+# ## Normal Equation
+# m training examples, n features.
+
+# Gradient descent gives one way of minimizing J. Let’s discuss a second way of doing so, this time performing the minimization explicitly and without resorting to an iterative algorithm. In the "Normal Equation" method, we will minimize J by explicitly taking its derivatives with respect to the θj ’s, and setting them to zero. This allows us to find the optimum theta without iteration. The normal equation formula is given below: 
+
+# θ=(X<sup>T</sup>X)<sup>−1</sup>X<sup>T</sup>y
+
+# ![normal_equation.png](Images/normal_equation.png)
+
+# ### Normal Equation Noninvertibility
+# When implementing the normal equation in octave we want to use the 'pinv' function rather than 'inv.' The 'pinv' function will give you a value of $\theta$ even if X<sup>T</sup>X is not invertible. 
+# 
+# If X<sup>T</sup>X is noninvertible, the common causes might be having :
+# 
+# - Redundant features, where two features are very closely related (i.e. they are linearly dependent)
+# 
+# - Too many features (e.g. m ≤ n). In this case, delete some features or use "regularization" (to be explained in a later lesson).
+# 
+# Solutions to the above problems include deleting a feature that is linearly dependent with another or deleting one or more features when there are too many features.
+
 # In[ ]:
 
 
@@ -139,119 +176,3 @@
 
 
 
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# 
-# 
-# You can also create content with Jupyter Notebooks. This means that you can include
-# code blocks and their outputs in your book.
-# 
-# ## Markdown + notebooks
-# 
-# As it is markdown, you can embed images, HTML, etc into your posts!
-# 
-# ![](https://myst-parser.readthedocs.io/en/latest/_static/logo-wide.svg)
-# 
-# You can also $add_{math}$ and
-# 
-# $$
-# math^{blocks}
-# $$
-# 
-# or
-# 
-# $$
-# \begin{aligned}
-# \mbox{mean} la_{tex} \\ \\
-# math blocks
-# \end{aligned}
-# $$
-# 
-# But make sure you \$Escape \$your \$dollar signs \$you want to keep!
-# 
-# ## MyST markdown
-# 
-# MyST markdown works in Jupyter Notebooks as well. For more information about MyST markdown, check
-# out [the MyST guide in Jupyter Book](https://jupyterbook.org/content/myst.html),
-# or see [the MyST markdown documentation](https://myst-parser.readthedocs.io/en/latest/).
-# 
-# ## Code blocks and outputs
-# 
-# Jupyter Book will also embed your code blocks and output in your book.
-# For example, here's some sample Matplotlib code:
-
-# In[1]:
-
-
-from matplotlib import rcParams, cycler
-import matplotlib.pyplot as plt
-import numpy as np
-plt.ion()
-
-
-# In[ ]:
-
-
-# Fixing random state for reproducibility
-np.random.seed(19680801)
-
-N = 10
-data = [np.logspace(0, 1, 100) + np.random.randn(100) + ii for ii in range(N)]
-data = np.array(data).T
-cmap = plt.cm.coolwarm
-rcParams['axes.prop_cycle'] = cycler(color=cmap(np.linspace(0, 1, N)))
-
-
-from matplotlib.lines import Line2D
-custom_lines = [Line2D([0], [0], color=cmap(0.), lw=4),
-                Line2D([0], [0], color=cmap(.5), lw=4),
-                Line2D([0], [0], color=cmap(1.), lw=4)]
-
-fig, ax = plt.subplots(figsize=(10, 5))
-lines = ax.plot(data)
-ax.legend(custom_lines, ['Cold', 'Medium', 'Hot']);
-
-
-# There is a lot more that you can do with outputs (such as including interactive outputs)
-# with your book. For more information about this, see [the Jupyter Book documentation](https://jupyterbook.org)
